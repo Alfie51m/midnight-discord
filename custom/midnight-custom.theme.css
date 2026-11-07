@@ -2560,8 +2560,8 @@ body {
 }
 .layer_Fd0FEH .standardSidebarView_jnk11m .toolsContainer_jnk11m {
     position: absolute;
-    top: 12px;
-    right: 12px;
+    top: 16px;
+    right: 16px;
     width: auto;
     height: auto;
     margin: 0;
@@ -2572,12 +2572,28 @@ body {
     margin: 0;
     padding: 0;
 }
+/* plain X like user settings, instead of discord's circle with an ESC label */
+.layer_Fd0FEH .standardSidebarView_jnk11m .keybind_e76OBR {
+    display: none;
+}
+.layer_Fd0FEH .standardSidebarView_jnk11m .closeButton_e76OBR {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: var(--radius-sm);
+    color: var(--text-4);
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+.layer_Fd0FEH .standardSidebarView_jnk11m .closeButton_e76OBR:hover {
+    background-color: var(--hover);
+    color: var(--text-2);
+}
 /* see the app behind the popup, like user settings: no background on the settings layer, and keep the main app
    layer showing (discord fades and shrinks it out with inline styles while a full-screen layer is open,
    so !important is needed). Only while server or channel settings are open. */
 .layer_Fd0FEH:has(> div > .standardSidebarView_jnk11m) {
     background: none;
-    z-index: 100; /* above everything in the app behind it, which now stays visible */
+    z-index: 1050; /* above everything in the app behind it, including midnight's title bar buttons (1000) */
 }
 .layers_Fd0FEH:has(> .layer_Fd0FEH > div > .standardSidebarView_jnk11m) > .baseLayer_Fd0FEH {
     opacity: 1 !important;
