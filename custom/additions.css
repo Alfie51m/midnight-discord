@@ -141,7 +141,8 @@ body {
 }
 /* list pages (roles, audit log, invites...) scroll in their own inner scroller, whose content is capped at 660px
    with a 40px left margin: centre it and let it grow like the other pages */
-.layer_Fd0FEH .standardSidebarView_jnk11m .customScroller_jnk11m > .content_tqapBM {
+/* (the content box's name differs per page, e.g. content_tqapBM on roles, content_ohxi6x on audit log) */
+.layer_Fd0FEH .standardSidebarView_jnk11m .customScroller_jnk11m > [class*='content_'] {
     width: auto;
     max-width: 1200px;
     margin-inline: auto;
@@ -194,6 +195,14 @@ body {
 .layer_Fd0FEH .standardSidebarView_jnk11m .closeButton_e76OBR:has(> svg:hover) {
     background-color: var(--hover);
     color: var(--text-2);
+}
+/* edit role: the editor beside the role list doesn't grow, and its form is capped at 508px */
+.layer_Fd0FEH .standardSidebarView_jnk11m .contentContainer_cKeB2a {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+.layer_Fd0FEH .standardSidebarView_jnk11m .contentContainer_cKeB2a .contentWidth_tLZg6c {
+    max-width: none;
 }
 /* click outside the popup to close it, like user settings. The close button gets an invisible area covering the
    whole window. The popup is its own stacking layer (z-index: 0) and nothing between it and the button makes
