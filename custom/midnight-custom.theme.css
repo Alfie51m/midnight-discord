@@ -2489,10 +2489,12 @@ body {
 /* ===== CUSTOMISED: server and channel settings as a floating popup, like user settings =====
    Discord still draws these full screen. Float the panel with the same insets as the user settings popup
    (about 64px top/bottom, 80px sides), dim everything behind it with its own shadow (so it doesn't depend on
-   the page structure around it), and give it the same black sidebar with a divider and a centred content column. */
-.standardSidebarView_jnk11m {
-    position: fixed;
-    inset: 64px 80px;
+   the elements around it), and give it the same black sidebar with a divider and a centred content column. */
+.layer_Fd0FEH .standardSidebarView_jnk11m {
+    /* layer prefix: discord's settings styles load after the theme, so a single class loses on position and top */
+    --settings-popup-layer-offset: 22px; /* discord's layer starts this far above the window */
+    position: absolute;
+    inset: calc(64px + var(--settings-popup-layer-offset)) 80px 64px;
     width: auto;
     height: auto;
     background-color: var(--bg-4);
