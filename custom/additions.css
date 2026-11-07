@@ -71,7 +71,7 @@ body {
     /* layer prefix: discord's settings styles load after the theme, so a single class loses on position and top */
     --settings-popup-inset-y: 64px;
     --settings-popup-inset-x: 80px;
-    position: fixed; /* placed against the window, since discord's layer extends past it by a varying amount */
+    position: fixed; /* placed against the window; discord may keep it absolute, which still lands close */
     inset: var(--settings-popup-inset-y) var(--settings-popup-inset-x);
     width: auto;
     height: auto;
@@ -81,6 +81,8 @@ body {
     box-shadow: 0 0 0 100vmax hsl(0, 0%, 0%, 0.6); /* dims the app behind, like user settings */
     overflow: hidden;
     backdrop-filter: none; /* a filter here would trap the click-outside area below inside the popup */
+    z-index: 0; /* own stacking layer, so the click-outside area below sits under the popup's contents. Set explicitly
+                   because discord keeps this panel position: absolute, which alone doesn't make one */
 }
 .layer_Fd0FEH .standardSidebarView_jnk11m {
     display: flex;
@@ -164,7 +166,7 @@ body {
     color: var(--text-2);
 }
 /* click outside the popup to close it, like user settings. The close button gets an invisible area covering the
-   whole window. The popup (position: fixed) is its own stacking layer and nothing between it and the button makes
+   whole window. The popup is its own stacking layer (z-index: 0) and nothing between it and the button makes
    another, so z-index -1 puts the area under all of the popup's contents: clicks inside the popup reach the popup,
    and only clicks outside it reach the close button. */
 .layer_Fd0FEH .standardSidebarView_jnk11m .closeButton_e76OBR::before {
