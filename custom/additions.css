@@ -134,9 +134,19 @@ body {
 .layer_Fd0FEH .standardSidebarView_jnk11m .contentColumnDefault_jnk11m {
     max-width: 900px;
 }
-/* pages inside a column (roles, edit role, invites...) carry discord's own 740px cap: let them fill the column */
+/* pages inside a column (edit role...) carry discord's own 740px width: let them fill the column */
 .layer_Fd0FEH .standardSidebarView_jnk11m :is(.contentColumn_jnk11m, .customColumn_jnk11m) > * {
+    width: auto;
     max-width: none;
+}
+/* list pages (roles, audit log, invites...) scroll in their own inner scroller, whose content is capped at 660px
+   with a 40px left margin: centre it and let it grow like the other pages */
+.layer_Fd0FEH .standardSidebarView_jnk11m .customScroller_jnk11m > .content_tqapBM {
+    width: auto;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: 40px;
+    box-sizing: border-box;
 }
 /* close button in the popup's top-right corner, like user settings. It sits inside the scrolling content, so the
    scroller stops being its positioning frame (static) and it's placed against the non-scrolling content region
