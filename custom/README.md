@@ -6,12 +6,11 @@ My personal version of [midnight](https://github.com/refact0r/midnight-discord),
 
 **Use it as a Vencord online theme** (updates itself, nothing to download):
 
-1. In this repository's **Settings → Pages**, set the source to **Deploy from a branch**, branch `master`, folder `/ (root)`, and save.
-2. In Vencord's **Settings → Themes → Online Themes**, add:
-   `https://alfie51m.github.io/midnight-discord/custom/midnight-custom.theme.css`
-3. Turn off any local copy of the theme, so it doesn't load twice.
+1. In Vencord's **Settings → Themes → Online Themes**, add:
+   `https://raw.githubusercontent.com/Alfie51m/midnight-discord/master/custom/midnight-custom.theme.css`
+2. Turn off any local copy of the theme, so it doesn't load twice.
 
-Use the GitHub Pages link, not the raw.githubusercontent.com one: raw links are served as plain text, which Discord won't apply as a stylesheet. Vencord loads online themes when Discord starts (or press Ctrl+R to reload), and Discord needs to be online to load them.
+Vencord loads online themes when Discord starts (or press Ctrl+R to reload), so Discord needs to be online to load it. GitHub can take a few minutes to serve a newly built version.
 
 ## How it stays up to date
 
