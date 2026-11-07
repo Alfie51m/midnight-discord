@@ -2487,39 +2487,35 @@ body {
 }
 
 /* ===== CUSTOMISED: server and channel settings as a floating popup, like user settings =====
-   Discord still draws these as a full-screen layer. Float it in the middle with a dimmed backdrop,
-   stop the sidebar stretching across the left half, and let the content use the width.
-   Only the full-screen version (directly in a layer) is changed, not any copy inside another popup. */
-[class*='layer_']:has(> .standardSidebarView_jnk11m) {
-    background-color: hsl(0, 0%, 0%, 0.6);
-}
-[class*='layer_'] > .standardSidebarView_jnk11m {
-    --settings-popup-max-width: 1200px; /* widest the popup gets */
-    position: absolute;
-    inset: 5vh max(4vw, calc((100% - var(--settings-popup-max-width)) / 2));
+   Discord still draws these full screen. Float the panel with the same insets as the user settings popup
+   (about 64px top/bottom, 80px sides), dim everything behind it with its own shadow (so it doesn't depend on
+   the page structure around it), and give it the same black sidebar with a divider and a centred content column. */
+.standardSidebarView_jnk11m {
+    position: fixed;
+    inset: 64px 80px;
     width: auto;
     height: auto;
     background-color: var(--bg-4);
     border: var(--border-thickness) solid var(--border-subtle);
     border-radius: var(--radius-lg);
-    box-shadow: 0 8px 32px hsl(0, 0%, 0%, 0.5);
+    box-shadow: 0 0 0 100vmax hsl(0, 0%, 0%, 0.75);
     overflow: hidden;
 }
-[class*='layer_'] > .standardSidebarView_jnk11m .sidebarRegion_jnk11m {
-    flex: 0 0 auto;
+.standardSidebarView_jnk11m .sidebarRegion_jnk11m {
+    flex: 0 0 316px;
+    border-right: var(--border-thickness) solid var(--border-subtle);
 }
-[class*='layer_'] > .standardSidebarView_jnk11m .contentRegion_jnk11m {
+.standardSidebarView_jnk11m .sidebarRegionScroller_jnk11m {
+    background-color: var(--bg-4);
+}
+.standardSidebarView_jnk11m .sidebar_jnk11m {
+    width: auto;
+    padding: 20px 16px;
+}
+.standardSidebarView_jnk11m .contentRegion_jnk11m {
     flex: 1 1 auto;
 }
-[class*='layer_'] > .standardSidebarView_jnk11m .contentColumnDefault_jnk11m {
-    max-width: none;
-}
-[class*='layer_'] > .standardSidebarView_jnk11m .item_6zZYhF {
-    color: var(--text-3);
-}
-[class*='layer_'] > .standardSidebarView_jnk11m .item_6zZYhF:hover {
-    color: var(--text-2);
-}
-[class*='layer_'] > .standardSidebarView_jnk11m .item_6zZYhF.selected_6zZYhF {
-    color: var(--text-1);
+.standardSidebarView_jnk11m .contentColumnDefault_jnk11m {
+    max-width: 900px;
+    margin-inline: auto;
 }
