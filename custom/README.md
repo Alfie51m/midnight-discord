@@ -2,7 +2,16 @@
 
 My personal version of [midnight](https://github.com/refact0r/midnight-discord), as one self-contained theme file with no imports.
 
-**The theme file:** [`midnight-custom.theme.css`](./midnight-custom.theme.css). Download it and put it in your Vencord or BetterDiscord themes folder. Do not edit it by hand: it is rebuilt automatically.
+**The theme file:** [`midnight-custom.theme.css`](./midnight-custom.theme.css). Do not edit it by hand: it is rebuilt automatically.
+
+**Use it as a Vencord online theme** (updates itself, nothing to download):
+
+1. In this repository's **Settings → Pages**, set the source to **Deploy from a branch**, branch `master`, folder `/ (root)`, and save.
+2. In Vencord's **Settings → Themes → Online Themes**, add:
+   `https://alfie51m.github.io/midnight-discord/custom/midnight-custom.theme.css`
+3. Turn off any local copy of the theme, so it doesn't load twice.
+
+Use the GitHub Pages link, not the raw.githubusercontent.com one: raw links are served as plain text, which Discord won't apply as a stylesheet. Vencord loads online themes when Discord starts (or press Ctrl+R to reload), and Discord needs to be online to load them.
 
 ## How it stays up to date
 
