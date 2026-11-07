@@ -66,8 +66,7 @@ body {
 
 /* ===== CUSTOMISED: server and channel settings as a floating popup, like user settings =====
    Discord still draws these full screen. Float the panel with the same insets as the user settings popup
-   (64px top/bottom, 80px sides), dim everything behind it with its own shadow (so it doesn't depend on
-   the elements around it), and give it the same black sidebar with a divider and a centred content column. */
+   (64px top/bottom, 80px sides), dim everything behind it with its own shadow, and give it the same black sidebar with a divider and a centred content column. */
 .layer_Fd0FEH .standardSidebarView_jnk11m {
     /* layer prefix: discord's settings styles load after the theme, so a single class loses on position and top */
     --settings-popup-inset-y: 64px;
@@ -81,8 +80,6 @@ body {
     border-radius: var(--radius-lg);
     box-shadow: 0 0 0 100vmax hsl(0, 0%, 0%, 0.6); /* dims the app behind, like user settings */
     overflow: hidden;
-    z-index: 0; /* own stacking context, for the click-outside area below */
-    backdrop-filter: none; /* a filter here would trap the click-outside area inside the popup */
 }
 .layer_Fd0FEH .standardSidebarView_jnk11m {
     display: flex;
@@ -133,12 +130,16 @@ body {
     max-width: 900px;
     margin-inline: auto;
 }
-/* close button in the popup's top-right corner, like user settings. It sits inside the scrolling content, so it's
-   pinned against the window instead (fixed), and loses discord's 60px top padding. */
+/* close button in the popup's top-right corner, like user settings. It sits inside the scrolling content, so the
+   scroller stops being its positioning frame (static) and it's placed against the non-scrolling content region
+   instead, without discord's 60px top padding. */
+.layer_Fd0FEH .standardSidebarView_jnk11m .contentRegionScroller_jnk11m {
+    position: static;
+}
 .layer_Fd0FEH .standardSidebarView_jnk11m .toolsContainer_jnk11m {
-    position: fixed;
-    top: calc(var(--settings-popup-inset-y) + 12px);
-    right: calc(var(--settings-popup-inset-x) + 12px);
+    position: absolute;
+    top: 12px;
+    right: 12px;
     width: auto;
     height: auto;
     margin: 0;
@@ -148,15 +149,6 @@ body {
     position: static;
     margin: 0;
     padding: 0;
-}
-/* click outside the popup to close it, like user settings: the close button gets an invisible area covering the
-   whole window, layered under the popup's contents, so only clicks outside the popup reach it */
-.layer_Fd0FEH .standardSidebarView_jnk11m .tools_jnk11m :is([role='button'], button)::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    cursor: default;
 }
 /* see the app behind the popup, like user settings: no background on the settings layer, and keep the main app
    layer showing (discord fades and shrinks it out with inline styles while a full-screen layer is open,
