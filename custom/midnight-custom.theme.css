@@ -2569,6 +2569,7 @@ body {
    so !important is needed). Only while server or channel settings are open. */
 .layer_Fd0FEH:has(> div > .standardSidebarView_jnk11m) {
     background: none;
+    z-index: 100; /* above everything in the app behind it, which now stays visible */
 }
 .layers_Fd0FEH:has(> .layer_Fd0FEH > div > .standardSidebarView_jnk11m) > .baseLayer_Fd0FEH {
     opacity: 1 !important;
