@@ -24,6 +24,7 @@ General rule: wherever stock Discord dark mode uses white text or icons on its o
 - Stock thin unread divider (the thick "improve unread divider" block is removed).
 - Add server icon turns white on hover; switch knobs are dark on the blue.
 - Server settings menu hover and selected highlights use `--hover` and `--active`, so they show against the sidebar.
+- `--card-secondary-bg` was an unmapped placeholder (pure blue, e.g. expanded audit log entries); now `--bg-2`.
 - `--text-overlay-light` is light, so text over images and overlays (quest promoter names, Nitro tags) is readable.
 - Badge, checkbox, primary and connect button, and info and warning notice text use `--text-on-accent`, as do the forum OP tag, add friend button, VC new badge, radio centres, screen picker and text selection.
 

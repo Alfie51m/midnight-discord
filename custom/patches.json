@@ -210,6 +210,12 @@
       "selector": ".side_6zZYhF .item_6zZYhF.selected_6zZYhF {",
       "from": "var(--bg-2)",
       "to": "var(--active)"
+    },
+    {
+      "why": "placeholder blue (unmapped by the author) showed on expanded audit log entries",
+      "type": "var",
+      "name": "card-secondary-bg",
+      "value": "var(--bg-2)"
     }
   ]
 }
