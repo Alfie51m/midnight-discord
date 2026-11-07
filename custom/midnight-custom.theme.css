@@ -2556,6 +2556,10 @@ body {
 .layer_Fd0FEH .standardSidebarView_jnk11m .contentColumnDefault_jnk11m {
     max-width: 900px;
 }
+/* pages inside a column (roles, edit role, invites...) carry discord's own 740px cap: let them fill the column */
+.layer_Fd0FEH .standardSidebarView_jnk11m :is(.contentColumn_jnk11m, .customColumn_jnk11m) > * {
+    max-width: none;
+}
 /* close button in the popup's top-right corner, like user settings. It sits inside the scrolling content, so the
    scroller stops being its positioning frame (static) and it's placed against the non-scrolling content region
    instead, without discord's 60px top padding. */
