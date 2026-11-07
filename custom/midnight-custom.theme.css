@@ -2530,7 +2530,16 @@ body {
     width: 100%;
     box-sizing: border-box;
     margin: 0;
-    padding: 20px 16px;
+    padding: 28px 16px 20px;
+}
+/* server name at the top of the menu: bigger, with room above it */
+.layer_Fd0FEH .standardSidebarView_jnk11m .side_6zZYhF > .header_6zZYhF:first-child {
+    padding-top: 4px;
+    padding-bottom: 10px;
+    font-size: 16px;
+    line-height: 1.25;
+    font-weight: 600;
+    color: var(--text-2);
 }
 /* content: fills the rest, centred column */
 .layer_Fd0FEH .standardSidebarView_jnk11m .contentRegion_jnk11m {
