@@ -2488,7 +2488,7 @@ body {
 
 /* ===== CUSTOMISED: server and channel settings as a floating popup, like user settings =====
    Discord still draws these full screen. Float the panel with the same insets as the user settings popup
-   (64px top/bottom, 80px sides), dim everything behind it with its own shadow, and give it the same black sidebar with a divider and a centred content column. */
+   (64px top/bottom, 80px sides), dim the app behind it, and give it the same black sidebar with a divider and a centred content column. */
 .layer_Fd0FEH .standardSidebarView_jnk11m {
     /* layer prefix: discord's settings styles load after the theme, so a single class loses on position and top */
     --settings-popup-inset-y: 64px;
@@ -2500,7 +2500,6 @@ body {
     background-color: var(--bg-4);
     border: var(--border-thickness) solid var(--border-subtle);
     border-radius: var(--radius-lg);
-    box-shadow: 0 0 0 100vmax hsl(0, 0%, 0%, 0.6); /* dims the app behind, like user settings */
     overflow: hidden;
     backdrop-filter: none; /* a filter here would trap the click-outside area below inside the popup */
     z-index: 0; /* own stacking layer, so the click-outside area below sits under the popup's contents. Set explicitly
@@ -2575,15 +2574,26 @@ body {
 .layer_Fd0FEH .standardSidebarView_jnk11m .keybind_e76OBR {
     display: none;
 }
-.layer_Fd0FEH .standardSidebarView_jnk11m .closeButton_e76OBR {
+.layer_Fd0FEH .standardSidebarView_jnk11m .closeButton_e76OBR,
+.layer_Fd0FEH .standardSidebarView_jnk11m .closeButton_e76OBR:hover {
     width: 32px;
     height: 32px;
     border: none;
     border-radius: var(--radius-sm);
+    background-color: transparent;
     color: var(--text-4);
     transition: background-color 0.15s ease, color 0.15s ease;
 }
-.layer_Fd0FEH .standardSidebarView_jnk11m .closeButton_e76OBR:hover {
+/* the icon fills the button, and the highlight follows the icon rather than the button: hovering the click-outside
+   area below also counts as hovering the button, but not the icon */
+.layer_Fd0FEH .standardSidebarView_jnk11m .closeButton_e76OBR > svg {
+    width: 100%;
+    height: 100%;
+    padding: 7px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.layer_Fd0FEH .standardSidebarView_jnk11m .closeButton_e76OBR:has(> svg:hover) {
     background-color: var(--hover);
     color: var(--text-2);
 }
@@ -2618,7 +2628,8 @@ body {
    layer showing (discord fades and shrinks it out with inline styles while a full-screen layer is open,
    so !important is needed). Only while server or channel settings are open. */
 .layer_Fd0FEH:has(> div > .standardSidebarView_jnk11m) {
-    background: none;
+    background: hsl(0, 0%, 0%, 0.6); /* dims the app behind, like user settings */
+    transform: none !important; /* skip discord's scale animation (redrawing a full-window layer each frame), keep the fade */
     z-index: 1050; /* above everything in the app behind it, including midnight's title bar buttons (1000) */
 }
 .layers_Fd0FEH:has(> .layer_Fd0FEH > div > .standardSidebarView_jnk11m) > .baseLayer_Fd0FEH {
