@@ -2539,10 +2539,6 @@ body {
     font-weight: 600;
     color: var(--text-2);
 }
-/* open at the top: stop the browser's scroll anchoring from pushing the page down as content loads in */
-.layer_Fd0FEH .standardSidebarView_jnk11m .contentRegionScroller_jnk11m {
-    overflow-anchor: none;
-}
 /* content: fills the rest, centred column */
 .layer_Fd0FEH .standardSidebarView_jnk11m .contentRegion_jnk11m {
     position: relative;
