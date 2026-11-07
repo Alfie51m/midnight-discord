@@ -1,0 +1,65 @@
+/* Your own rules, added after the theme. Class names here are kept current by the class-update workflow. */
+
+/* ===== CUSTOMISED: Better Folders sidebar merged into the server list =====
+   When a folder is open, the folder column joins onto the right of the server list as one panel:
+   no gap or inner border where they meet, and slimmer side padding on the folder column. */
+body {
+    --bf-column-padding: calc(var(--custom-guild-list-padding) / 2); /* side padding of the folder column */
+    --bf-scrollbar-space: 10px; /* room for the folder column's hidden scrollbar; raise if the right side is still cut off */
+}
+/* main server list: drop its right edge and gap while a folder is open */
+.guilds_pog62O:has(+ .vc-betterFolders-sidebar) {
+    margin-right: 0;
+    border-right-width: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+/* folder column: continue the panel, with no left edge */
+.vc-betterFolders-sidebar .guilds_pog62O {
+    border-left-width: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+/* slimmer folder column: give it its own, smaller copy of the server list spacing so everything inside sizes to match */
+#app-mount .vc-betterFolders-sidebar {
+    --custom-guild-list-padding: var(--bf-column-padding);
+    --custom-guild-list-width: calc(var(--guildbar-avatar-size) + var(--bf-column-padding) * 2 + var(--border-thickness) + var(--bf-scrollbar-space));
+    width: auto !important;
+}
+/* keep the top padding the same as the main server list so the icons line up */
+.vc-betterFolders-sidebar .scroller_5dqHTG {
+    padding-top: 12px !important;
+    padding-bottom: 12px;
+}
+
+/* ===== CUSTOMISED: Vencord Game Activity Toggle icon matches the other user panel icons =====
+   Over a nameplate, Discord's own mute/deafen/settings icons are near-white (--text-1), but Vencord's icon
+   only inherits the button colour and stays dim. Discord's icons have no class either, so this rule sets them all to the same colour. The red "disabled" slash sets its own colour and is unaffected. */
+.container_g6VwXp:has(.container_AFi54G) .button_Y-8oZW svg:not([class]) {
+    color: var(--text-1); /* not var(--white): in this part of Discord the theme maps --white to black */
+}
+
+/* ===== CUSTOMISED: square top corners on the nameplate when something sits above it =====
+   With the game activity panel (or voice connection panel) shown above the user row, the nameplate's rounded
+   top corners clashed with the straight divider line. The bottom corners stay rounded to match the panel. */
+.panels_pog62O:has(.panel_8eCwJY, .connection_9U6LUN) .container_g6VwXp .container_AFi54G {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+/* ===== CUSTOMISED: dark text on the theme's blue =====
+   These elements sit on the theme's blue (accent) background but take their text colour from Discord's --white.
+   Keep them dark; everything on Discord-coloured backgrounds (red, green, overlays, logo tiles) stays white. */
+.numberBadge_lMvXrQ /* unread number badge */,
+.iconBadge_ybUK7Z /* icon badge */,
+.mentionsBar_t1P8Sn /* new mention pill */,
+.mention_oJAkDB /* server list new mention pill */,
+.unread_oJAkDB /* new unreads bar (channel list) */,
+.unreadMentionsIndicatorTop_5dqHTG,
+.unreadMentionsIndicatorBottom_5dqHTG /* server list new pill */,
+.newMessagesBar_j9Vvzj /* unread bar */,
+.divider_SY_P2T /* unread divider NEW tag */,
+.botTagRegular_feVUtO /* bot tag */ {
+    --white: var(--text-on-accent);
+    --white-500: var(--text-on-accent);
+}

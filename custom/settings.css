@@ -1,0 +1,44 @@
+/* Your settings. Each line overrides the value of the same variable in themes/midnight.theme.css.
+   A variable that isn't there yet is added after the one named in its 'after:' note.
+   Format: one variable per line, as in the theme file. */
+
+--font: ''; /* stock discord font (gg sans). was: 'figtree' */
+--custom-window-controls: off; /* discord's own window buttons. was: on */
+--custom-dms-icon: off; /* discord logo on the DM button. was: custom */
+--dms-icon-color-before: var(--text-3); /* DM logo matches the add server / discovery icons. was: var(--icon-subtle) */
+--text-0: hsl(0, 0%, 100%); /* white, like stock discord dark mode, on discord-coloured backgrounds. was: var(--bg-4) */
+--text-on-accent: var(--bg-4); /* NEW: dark text/icons on the theme's blue (accent) backgrounds. after: --text-0. was: new */
+--text-1: hsl(220, 13%, 95%); /* onyx-matched. was: hsl(220, 45%, 95%) */
+--text-2: hsl(225, 5%, 88%); /* onyx-matched. was: hsl(220, 25%, 70%) */
+--text-3: hsl(225, 4%, 83%); /* onyx-matched. was: hsl(220, 20%, 60%) */
+--text-4: hsl(235, 4%, 50%); /* onyx-matched. was: hsl(220, 15%, 40%) */
+--text-5: hsl(235, 4%, 40%); /* onyx-matched. was: hsl(220, 15%, 25%) */
+--bg-1: hsla(240, 7%, 15%, 1); /* onyx-matched. was: hsla(220, 15%, 20%, 1) */
+--bg-2: hsla(240, 7%, 11%, 1); /* onyx-matched. was: hsla(220, 15%, 16%, 1) */
+--bg-3: hsla(240, 9%, 7%, 1); /* onyx message box (#101013), also the gaps between panels. was: hsla(220, 15%, 13%, 1) */
+--bg-4: hsla(0, 0%, 0%, 1); /* onyx pure black panels. was: hsla(220, 15%, 10%, 1) */
+--hover: hsla(220, 5%, 50%, 0.15); /* neutral, strong enough to show on black. was: hsla(221, 19%, 40%, 0.1) */
+--active: hsla(220, 5%, 50%, 0.2); /* onyx-matched. was: hsla(220, 19%, 40%, 0.2) */
+--active-2: hsla(220, 5%, 50%, 0.3); /* onyx-matched. was: hsla(220, 19%, 40%, 0.3) */
+--message-hover: hsla(240, 5%, 60%, 0.08); /* faint grey so it shows on black. was: hsla(220, 0%, 0%, 0.1) */
+--mention: color-mix(in hsl, var(--accent-2), transparent 90%); /* solid like stock discord. was: linear-gradient(to right, color-mix(in hsl, var(--accent-2), transparent 90%) 40%, transparent) */
+--mention-hover: color-mix(in hsl, var(--accent-2), transparent 92%); /* solid like stock discord. was: linear-gradient(to right, color-mix(in hsl, var(--accent-2), transparent 95%) 40%, transparent) */
+--reply: color-mix(in hsl, var(--text-3), transparent 90%); /* solid replying-to / jump highlight. was: linear-gradient(to right, color-mix(in hsl, var(--text-3), transparent 90%) 40%, transparent) */
+--reply-hover: color-mix(in hsl, var(--text-3), transparent 92%); /* solid. was: linear-gradient(to right, color-mix(in hsl, var(--text-3), transparent 95%) 40%, transparent) */
+--red-1: hsl(359, 87%, 67%); /* discord colour. was: oklch(75% 0.12 0) */
+--red-2: #f23f43; /* discord red: DND, danger. was: oklch(70% 0.12 0) */
+--red-3: #da373c; /* discord red: buttons. was: oklch(65% 0.12 0) */
+--red-4: #a12828; /* discord colour. was: oklch(60% 0.12 0) */
+--red-5: #8f2022; /* discord colour. was: oklch(55% 0.12 0) */
+--green-1: #2dc770; /* discord colour. was: oklch(75% 0.11 170) */
+--green-2: #23a55a; /* discord green: online. was: oklch(70% 0.11 170) */
+--green-3: #248046; /* discord green: buttons. was: oklch(65% 0.11 170) */
+--green-4: #1a6334; /* discord colour. was: oklch(60% 0.11 170) */
+--green-5: #15572b; /* discord colour. was: oklch(55% 0.11 160) */
+--yellow-1: #f6c75f; /* discord colour. was: oklch(80% 0.11 90) */
+--yellow-2: #f0b232; /* discord yellow: idle, warnings. was: oklch(75% 0.11 90) */
+--yellow-3: #f0b232; /* discord colour. was: oklch(70% 0.11 90) */
+--yellow-4: #c4892a; /* discord colour. was: oklch(65% 0.11 90) */
+--yellow-5: #a26a1a; /* discord colour. was: oklch(60% 0.11 90) */
+--animations: off; /* no slide-out when hovering channels, DMs and members. was: on */
+--small-user-panel: off; /* user panel runs full width under the server list. was: on */

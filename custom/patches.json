@@ -1,0 +1,201 @@
+{
+  "_about": "Edits applied to build/midnight.css when building your theme. If one stops matching after an update, the build fails and names it.",
+  "patches": [
+    {
+      "why": "no Google Fonts download (stock font is used)",
+      "type": "remove-line",
+      "startsWith": "@import url('https://fonts.googleapis.com/"
+    },
+    {
+      "why": "stock thin unread divider instead of the thick one",
+      "type": "replace",
+      "find": "/* improve unread divider */\n.divider_4TfzT5 {\n    border-width: var(--divider-thickness);\n    border-radius: var(--divider-thickness);\n}\n.endCap_4TfzT5 {\n    margin-top: calc(var(--divider-thickness) / -2);\n}\n.divider_4TfzT5 .content_4TfzT5 {\n    margin-top: calc(var(--divider-thickness) - var(--divider-thickness) * 2);\n}\n\n",
+      "replace": ""
+    },
+    {
+      "why": "add server icon turns white on hover, like stock",
+      "type": "rule",
+      "selector": ".circleIconButton_g8YUxD:hover {",
+      "from": "var(--bg-4)",
+      "to": "var(--text-0)"
+    },
+    {
+      "why": "dark switch knob on the theme blue",
+      "type": "rule",
+      "selector": ".thumb_9AraPt > rect {",
+      "from": "fill: var(--bg-4)",
+      "to": "fill: var(--text-on-accent)"
+    },
+    {
+      "why": "light text over images and overlays (quest promoter names, Nitro tags)",
+      "type": "var",
+      "name": "text-overlay-light",
+      "value": "var(--text-1)"
+    },
+    {
+      "why": "dark text/icons on the theme blue",
+      "type": "var",
+      "name": "badge-expressive-text-default",
+      "value": "var(--text-on-accent)"
+    },
+    {
+      "why": "dark text/icons on the theme blue",
+      "type": "var",
+      "name": "badge-text-default",
+      "value": "var(--text-on-accent)"
+    },
+    {
+      "why": "dark text/icons on the theme blue",
+      "type": "var",
+      "name": "checkbox-icon-active",
+      "value": "var(--text-on-accent)"
+    },
+    {
+      "why": "dark text/icons on the theme blue",
+      "type": "var",
+      "name": "notice-text-info",
+      "value": "var(--text-on-accent)"
+    },
+    {
+      "why": "dark text/icons on the theme blue",
+      "type": "var",
+      "name": "notice-text-warning",
+      "value": "var(--text-on-accent)"
+    },
+    {
+      "why": "dark text/icons on the theme blue",
+      "type": "var",
+      "name": "control-connect-icon-active",
+      "value": "var(--text-on-accent)"
+    },
+    {
+      "why": "dark text/icons on the theme blue",
+      "type": "var",
+      "name": "control-connect-icon-default",
+      "value": "var(--text-on-accent)"
+    },
+    {
+      "why": "dark text/icons on the theme blue",
+      "type": "var",
+      "name": "control-connect-icon-hover",
+      "value": "var(--text-on-accent)"
+    },
+    {
+      "why": "dark text/icons on the theme blue",
+      "type": "var",
+      "name": "control-connect-text-active",
+      "value": "var(--text-on-accent)"
+    },
+    {
+      "why": "dark text/icons on the theme blue",
+      "type": "var",
+      "name": "control-connect-text-default",
+      "value": "var(--text-on-accent)"
+    },
+    {
+      "why": "dark text/icons on the theme blue",
+      "type": "var",
+      "name": "control-connect-text-hover",
+      "value": "var(--text-on-accent)"
+    },
+    {
+      "why": "dark text/icons on the theme blue",
+      "type": "var",
+      "name": "control-primary-icon-active",
+      "value": "var(--text-on-accent)"
+    },
+    {
+      "why": "dark text/icons on the theme blue",
+      "type": "var",
+      "name": "control-primary-icon-default",
+      "value": "var(--text-on-accent)"
+    },
+    {
+      "why": "dark text/icons on the theme blue",
+      "type": "var",
+      "name": "control-primary-icon-hover",
+      "value": "var(--text-on-accent)"
+    },
+    {
+      "why": "dark text/icons on the theme blue",
+      "type": "var",
+      "name": "control-primary-text-active",
+      "value": "var(--text-on-accent)"
+    },
+    {
+      "why": "dark text/icons on the theme blue",
+      "type": "var",
+      "name": "control-primary-text-default",
+      "value": "var(--text-on-accent)"
+    },
+    {
+      "why": "dark text/icons on the theme blue",
+      "type": "var",
+      "name": "control-primary-text-hover",
+      "value": "var(--text-on-accent)"
+    },
+    {
+      "why": "dark text on the theme blue",
+      "type": "rule",
+      "selector": "#app-mount .addFriend_zrUwGA:hover /* add friend button hover */ {",
+      "from": "var(--text-0)",
+      "to": "var(--text-on-accent)"
+    },
+    {
+      "why": "dark text on the theme blue",
+      "type": "rule",
+      "selector": "#app-mount .addFriend_zrUwGA[aria-selected=true] /* add friend button selected */ {",
+      "from": "var(--text-0)",
+      "to": "var(--text-on-accent)"
+    },
+    {
+      "why": "dark text on the theme blue",
+      "type": "rule",
+      "selector": ".botTagOP_feVUtO /* forum post op tag */ {",
+      "from": "var(--text-0)",
+      "to": "var(--text-on-accent)"
+    },
+    {
+      "why": "dark text on the theme blue",
+      "type": "rule",
+      "selector": ".vc-switch-container.vc-switch-checked .vc-switch-slider rect[fill='white'] {",
+      "from": "var(--text-0)",
+      "to": "var(--text-on-accent)"
+    },
+    {
+      "why": "dark text on the theme blue",
+      "type": "rule",
+      "selector": ".refreshIcon_jqZBm0 /* settings radiobutton center */ {",
+      "from": "var(--text-0)",
+      "to": "var(--text-on-accent)"
+    },
+    {
+      "why": "dark text on the theme blue",
+      "type": "rule",
+      "selector": ".badge_4guu7- /* new text badge (right click on person in vc) */ {",
+      "from": "var(--text-0)",
+      "to": "var(--text-on-accent)"
+    },
+    {
+      "why": "dark text on the theme blue",
+      "type": "rule",
+      "selector": ".vcd-screen-picker-option-radio[data-checked='true'] span {",
+      "from": "var(--text-0)",
+      "to": "var(--text-on-accent)"
+    },
+    {
+      "why": "dark text on the theme blue",
+      "type": "rule",
+      "selector": ".vcd-screen-picker-option-radio[data-checked='true'] .defaultColor_MMUIw6 {",
+      "from": "var(--text-0)",
+      "to": "var(--text-on-accent)"
+    },
+    {
+      "why": "dark text on the theme blue",
+      "type": "rule",
+      "selector": ".highlight {",
+      "from": "var(--text-0)",
+      "to": "var(--text-on-accent)"
+    }
+  ]
+}
