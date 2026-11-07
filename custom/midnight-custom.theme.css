@@ -2593,9 +2593,17 @@ body {
    and only clicks outside it reach the close button. */
 .layer_Fd0FEH .standardSidebarView_jnk11m .closeButton_e76OBR::before {
     content: '';
+    display: block;
     position: fixed;
     inset: 0;
+    width: auto;
+    height: auto;
     z-index: -1;
+    visibility: visible;
+    pointer-events: auto;
+    background: none;
+    border: none;
+    transform: none;
     cursor: default;
 }
 /* see the app behind the popup, like user settings: no background on the settings layer, and keep the main app
