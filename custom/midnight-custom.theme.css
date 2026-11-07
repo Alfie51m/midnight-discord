@@ -2500,7 +2500,7 @@ body {
     background-color: var(--bg-4);
     border: var(--border-thickness) solid var(--border-subtle);
     border-radius: var(--radius-lg);
-    box-shadow: 0 0 0 100vmax hsl(0, 0%, 0%, 0.75);
+    box-shadow: 0 0 0 100vmax hsl(0, 0%, 0%, 0.6); /* dims the app behind, like user settings */
     overflow: hidden;
 }
 .standardSidebarView_jnk11m .sidebarRegion_jnk11m {
@@ -2524,4 +2524,15 @@ body {
 .standardSidebarView_jnk11m .contentColumnDefault_jnk11m {
     max-width: 900px;
     margin-inline: auto;
+}
+/* see the app behind the popup, like user settings: no background on the settings layer, and keep the main app
+   layer showing (discord fades and shrinks it out with inline styles while a full-screen layer is open,
+   so !important is needed). Only while server or channel settings are open. */
+.layer_Fd0FEH:has(> div > .standardSidebarView_jnk11m) {
+    background: none;
+}
+.layers_Fd0FEH:has(> .layer_Fd0FEH > div > .standardSidebarView_jnk11m) > .baseLayer_Fd0FEH {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
 }
