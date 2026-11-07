@@ -124,9 +124,15 @@ body {
     position: relative;
     flex: 1 1 auto;
 }
+/* every page centred in the popup: forms up to 900px, list pages (roles, invites, bans...) up to 1200px */
+.layer_Fd0FEH .standardSidebarView_jnk11m :is(.contentColumn_jnk11m, .customColumn_jnk11m) {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    box-sizing: border-box;
+}
 .layer_Fd0FEH .standardSidebarView_jnk11m .contentColumnDefault_jnk11m {
     max-width: 900px;
-    margin-inline: auto;
 }
 /* close button in the popup's top-right corner, like user settings. It sits inside the scrolling content, so the
    scroller stops being its positioning frame (static) and it's placed against the non-scrolling content region
