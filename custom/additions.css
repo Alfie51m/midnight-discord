@@ -81,7 +81,11 @@ body {
 }
 .standardSidebarView_jnk11m .sidebarRegion_jnk11m {
     flex: 0 0 316px;
+    justify-content: flex-start; /* discord lines the menu up to the right edge */
     border-right: var(--border-thickness) solid var(--border-subtle);
+}
+.standardSidebarView_jnk11m .sidebarRegionScroller_jnk11m {
+    width: 100%;
 }
 .standardSidebarView_jnk11m .sidebarRegionScroller_jnk11m {
     background-color: var(--bg-4);
