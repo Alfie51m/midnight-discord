@@ -23,6 +23,7 @@ General rule: wherever stock Discord dark mode uses white text or icons on its o
 - No Google Fonts `@import`.
 - Stock thin unread divider (the thick "improve unread divider" block is removed).
 - Add server icon turns white on hover; switch knobs are dark on the blue.
+- Server settings menu hover and selected highlights use `--hover` and `--active`, so they show against the sidebar.
 - `--text-overlay-light` is light, so text over images and overlays (quest promoter names, Nitro tags) is readable.
 - Badge, checkbox, primary and connect button, and info and warning notice text use `--text-on-accent`, as do the forum OP tag, add friend button, VC new badge, radio centres, screen picker and text selection.
 
@@ -33,6 +34,7 @@ General rule: wherever stock Discord dark mode uses white text or icons on its o
 | Better Folders merge | An open folder joins onto the server list as one panel with a slimmer column (`--bf-column-padding`, `--bf-scrollbar-space`). |
 | Game Activity Toggle icon | Over a nameplate, all user panel icons are the same near-white. |
 | Square nameplate top | The nameplate's top corners are square when the game activity or voice panel sits above the user row. |
+| Floating server settings | Server and channel settings open as a centred popup (max 1200px, `--settings-popup-max-width`) with a dimmed backdrop, a compact sidebar, full-width content and readable menu text. |
 | Dark text on the theme's blue | Blue-backed elements that use Discord's `--white` (unread badges, mention pills, unread bars, the NEW tag, bot tags) get dark text. |
 
 ## If something breaks
