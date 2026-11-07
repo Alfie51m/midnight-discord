@@ -34,7 +34,7 @@ General rule: wherever stock Discord dark mode uses white text or icons on its o
 | Better Folders merge | An open folder joins onto the server list as one panel with a slimmer column (`--bf-column-padding`, `--bf-scrollbar-space`). |
 | Game Activity Toggle icon | Over a nameplate, all user panel icons are the same near-white. |
 | Square nameplate top | The nameplate's top corners are square when the game activity or voice panel sits above the user row. |
-| Floating server settings | Server and channel settings float like the user settings popup: 64px/80px insets with the app dimmed behind, a 316px black sidebar with a divider, a centred content column (max 900px) and the close button in the top-right corner. |
+| Floating server settings | Server and channel settings float like the user settings popup: 64px/80px insets with the app dimmed behind, a 316px black sidebar with a divider, a centred content column (max 900px), a plain X close button in the top-right corner, and clicking outside closes it. |
 | Dark text on the theme's blue | Blue-backed elements that use Discord's `--white` (unread badges, mention pills, unread bars, the NEW tag, bot tags) get dark text. |
 
 ## If something breaks
