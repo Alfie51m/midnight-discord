@@ -2678,3 +2678,28 @@ body {
     transform: none !important;
     visibility: visible !important;
 }
+
+/* ===== CUSTOMISED: Nitro page panel and top bar =====
+   midnight targets the Nitro page as .homeWrapper_8iSxT3 > .container_ybUK7Z and .mainPageScroller_IRnLy8, but
+   Discord now wraps it in a scroller (scroller_0fgkqL) with the nav bar inside, so it was left square and unstyled. */
+/* the page: a rounded, bordered panel like the chat and the theme's other panels */
+.homeWrapper_8iSxT3 > .scroller_0fgkqL {
+    border-radius: var(--radius-lg);
+    border: var(--border-thickness) solid var(--border-subtle);
+    box-sizing: border-box;
+    transition: border-color var(--border-hover-transition);
+}
+.homeWrapper_8iSxT3 > .scroller_0fgkqL:hover {
+    border-color: var(--border-hover);
+}
+/* the nav bar: solid black like the shop's, with a divider that page content scrolls under, as tall as the channel
+   header so its links line up with midnight's title bar buttons (inbox, dev tools) floating beside it */
+.scroller_0fgkqL .navBar_jHfUxk {
+    height: var(--custom-channel-header-height);
+    margin-bottom: 0;
+    background-color: var(--bg-4);
+    border-bottom: var(--border-thickness) solid var(--border-subtle);
+}
+.scroller_0fgkqL .navBar_jHfUxk :is(.upperContainer_ybUK7Z, .children_ybUK7Z, .navBarContent_jHfUxk) {
+    height: 100%;
+}
