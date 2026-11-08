@@ -71,7 +71,7 @@ body {
     /* layer prefix: discord's settings styles load after the theme, so a single class loses on position and top */
     --settings-popup-inset-y: 66px; /* same as the user settings popup */
     --settings-popup-inset-x: 84px;
-    position: fixed; /* placed against the window; discord may keep it absolute, which still lands close */
+    position: fixed !important; /* against the window: discord forces absolute, which places it against a layer whose offset varies */
     inset: var(--settings-popup-inset-y) var(--settings-popup-inset-x);
     width: auto;
     height: auto;
