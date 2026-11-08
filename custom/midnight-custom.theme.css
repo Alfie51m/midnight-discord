@@ -2668,6 +2668,11 @@ body {
     transform: none !important; /* skip discord's scale animation (redrawing a full-window layer each frame), keep the fade */
     z-index: 1050; /* above everything in the app behind it, including midnight's title bar buttons (1000) */
 }
+/* discord's popups (confirmations, create invite, sticker upload, menus, tooltips) live in top-level layer containers
+   beside the app; lift them above the settings layer (1050) so dialogs opened from server settings show in front */
+.appAsidePanelWrapper_YRXZu0 > div > .layerContainer_VVADeK {
+    z-index: 1100;
+}
 .layers_Fd0FEH:has(> .layer_Fd0FEH > div > .standardSidebarView_jnk11m) > .baseLayer_Fd0FEH {
     opacity: 1 !important;
     transform: none !important;
