@@ -1,118 +1,68 @@
-<img width=800 src="https://raw.githubusercontent.com/refact0r/midnight-discord/master/assets/preview.png">
+# midnight (custom)
 
-# midnight
+A personal version of [midnight](https://github.com/refact0r/midnight-discord), refact0r's dark Discord theme, with Discord's own look restored where it matters and Onyx-black colours. It's built into one self-contained file that updates itself every day.
 
-a dark, customizable discord theme.
+![Preview of the midnight theme](./assets/preview.png)
 
-<img width=800 src="https://raw.githubusercontent.com/refact0r/midnight-discord/master/assets/flavors/midnight.png">
+*Preview of the original midnight theme. This version keeps its layout but uses pure black backgrounds, Discord's own icons, window buttons, font and status colours, and a floating server settings popup. See [what's changed](#whats-changed).*
 
-<img width=800 src="https://raw.githubusercontent.com/refact0r/midnight-discord/master/assets/flavors/default.png">
+## Install
 
-<img width=800 src="https://raw.githubusercontent.com/refact0r/midnight-discord/master/assets/flavors/background.png">
-
-## install
-
-### vencord/betterdiscord (or any client that supports theme files)
-
-1. download the theme file, [`midnight.theme.css`](https://github.com/refact0r/midnight-discord/blob/master/themes/midnight.theme.css). (there should be a download button at the top right of the page)
-2. drag `midnight.theme.css` into your theme folder. (there should be a button to open the theme folder in theme settings)
-3. (optional) customize the theme by opening `midnight.theme.css` and editing the CSS variables within.
-
-### install through link
-
-add `https://refact0r.github.io/midnight-discord/build/midnight.css` to your theme import links. you will need to copy the theme variables to your quickcss in order to customize the theme.
-
-## flavors
-
-flavors are preset customizations for midnight.
-
-to use a flavor, follow the install instructions above but download the flavor theme file of your choice instead of `midnight.theme.css`. click a flavor name below to open its theme file, or click a preview image to view it at full size.
-
-<table>
-    <tr>
-        <td width="33%">
-            <a href="https://github.com/refact0r/midnight-discord/blob/master/themes/flavors/midnight-default.theme.css"><b>default discord</b></a><br>
-            <a href="https://raw.githubusercontent.com/refact0r/midnight-discord/master/assets/flavors/default.png"><img src="https://raw.githubusercontent.com/refact0r/midnight-discord/master/assets/flavors/thumbs/default.jpg"></a>
-        </td>
-        <td width="33%">
-            <a href="https://github.com/refact0r/midnight-discord/blob/master/themes/flavors/midnight-light.theme.css"><b>light</b></a><br>
-            <a href="https://raw.githubusercontent.com/refact0r/midnight-discord/master/assets/flavors/light.png"><img src="https://raw.githubusercontent.com/refact0r/midnight-discord/master/assets/flavors/thumbs/light.jpg"></a>
-        </td>
-        <td width="33%">
-            <a href="https://github.com/refact0r/midnight-discord/blob/master/themes/flavors/midnight-auto.theme.css"><b>auto</b></a> (follows system theme)<br>
-            <a href="https://raw.githubusercontent.com/refact0r/midnight-discord/master/assets/flavors/auto.png"><img src="https://raw.githubusercontent.com/refact0r/midnight-discord/master/assets/flavors/thumbs/auto.jpg"></a>
-        </td>
-    </tr>
-    <tr>
-        <td width="33%">
-            <a href="https://github.com/refact0r/midnight-discord/blob/master/themes/flavors/midnight-background.theme.css"><b>background</b></a><br>
-            <a href="https://raw.githubusercontent.com/refact0r/midnight-discord/master/assets/flavors/background.png"><img src="https://raw.githubusercontent.com/refact0r/midnight-discord/master/assets/flavors/thumbs/background.jpg"></a>
-        </td>
-        <td width="33%">
-            <a href="https://github.com/refact0r/midnight-discord/blob/master/themes/flavors/midnight-catppuccin-mocha.theme.css"><b>catppuccin mocha</b></a><br>
-            <a href="https://raw.githubusercontent.com/refact0r/midnight-discord/master/assets/flavors/catppuccin-mocha.png"><img src="https://raw.githubusercontent.com/refact0r/midnight-discord/master/assets/flavors/thumbs/catppuccin-mocha.jpg"></a>
-        </td>
-        <td width="33%">
-            <a href="https://github.com/refact0r/midnight-discord/blob/master/themes/flavors/midnight-catppuccin-macchiato.theme.css"><b>catppuccin macchiato</b></a><br>
-            <a href="https://raw.githubusercontent.com/refact0r/midnight-discord/master/assets/flavors/catppuccin-macchiato.png"><img src="https://raw.githubusercontent.com/refact0r/midnight-discord/master/assets/flavors/thumbs/catppuccin-macchiato.jpg"></a>
-        </td>
-    </tr>
-    <tr>
-        <td width="33%">
-            <a href="https://github.com/refact0r/midnight-discord/blob/master/themes/flavors/midnight-nord.theme.css"><b>nord</b></a><br>
-            <a href="https://raw.githubusercontent.com/refact0r/midnight-discord/master/assets/flavors/nord.png"><img src="https://raw.githubusercontent.com/refact0r/midnight-discord/master/assets/flavors/thumbs/nord.jpg"></a>
-        </td>
-        <td width="33%">
-            <a href="https://github.com/refact0r/midnight-discord/blob/master/themes/flavors/midnight-rose-pine.theme.css"><b>rose pine</b></a><br>
-            <a href="https://raw.githubusercontent.com/refact0r/midnight-discord/master/assets/flavors/rose-pine.png"><img src="https://raw.githubusercontent.com/refact0r/midnight-discord/master/assets/flavors/thumbs/rose-pine.jpg"></a>
-        </td>
-        <td width="33%">
-            <a href="https://github.com/refact0r/midnight-discord/blob/master/themes/flavors/midnight-rose-pine-moon.theme.css"><b>rose pine moon</b></a><br>
-            <a href="https://raw.githubusercontent.com/refact0r/midnight-discord/master/assets/flavors/rose-pine-moon.png"><img src="https://raw.githubusercontent.com/refact0r/midnight-discord/master/assets/flavors/thumbs/rose-pine-moon.jpg"></a>
-        </td>
-    </tr>
-    <tr>
-        <td width="33%">
-            <a href="https://github.com/refact0r/midnight-discord/blob/master/themes/flavors/midnight-tokyo-night.theme.css"><b>tokyo night</b></a><br>
-            <a href="https://raw.githubusercontent.com/refact0r/midnight-discord/master/assets/flavors/tokyo-night.png"><img src="https://raw.githubusercontent.com/refact0r/midnight-discord/master/assets/flavors/thumbs/tokyo-night.jpg"></a>
-        </td>
-        <td width="33%">
-            <a href="https://github.com/refact0r/midnight-discord/blob/master/themes/flavors/midnight-lilypichu.theme.css"><b>lilypichu</b></a><br>
-            <a href="https://raw.githubusercontent.com/refact0r/midnight-discord/master/assets/flavors/lilypichu.png"><img src="https://raw.githubusercontent.com/refact0r/midnight-discord/master/assets/flavors/thumbs/lilypichu.jpg"></a>
-        </td>
-        <td width="33%">
-            <a href="https://github.com/refact0r/midnight-discord/blob/master/themes/flavors/midnight-vencord.theme.css"><b>vencord</b></a><br>
-            <a href="https://raw.githubusercontent.com/refact0r/midnight-discord/master/assets/flavors/vencord.png"><img src="https://raw.githubusercontent.com/refact0r/midnight-discord/master/assets/flavors/thumbs/vencord.jpg"></a>
-        </td>
-    </tr>
-</table>
-
-## discord server
-
-need help? want to give feedback? want to be notified about upcoming changes? join <https://discord.gg/nz87hXyvcy>
-
-## contributing
-
-this theme uses a dev script to check for changes in the /src .css files and combine them into a build file in /build. note that both the /src files and the /build file are tracked in git, so any changes you contribute should exist in both places!!
-
-to run locally:
-
-1. clone the repository.
-2. run `npm i`.
-3. create a `.env` file in the project root with the paths of any local theme files you want to update (comma separated)
+**Vencord (recommended, updates itself):** open **Settings → Themes → Online Themes** and add:
 
 ```
-DEV_OUTPUT_PATH=C:\Users\USERNAME\AppData\Roaming\Vencord\themes\midnight-dev.theme.css
+https://raw.githubusercontent.com/Alfie51m/midnight-discord/master/custom/midnight-custom.theme.css
 ```
 
-1. run `npm run dev`.
-2. make changes to any file in `/src` or the main theme file. the local theme files you listed will automatically be updated, along with the build file in `/build`.
-3. make a pull request with your changes!
+Vencord loads online themes when Discord starts, or when you press Ctrl+R. Turn off any other copy of midnight so it doesn't load twice.
 
-## credits
+**BetterDiscord or offline use:** download [`custom/midnight-custom.theme.css`](./custom/midnight-custom.theme.css) and put it in your themes folder. A downloaded copy doesn't update itself, so download it again when you want the latest version.
 
-original design inspired by <https://github.com/schnensch0/zelk>
+## What's changed
 
-window controls inspired by <https://github.com/Dyzean/Tokyo-Night>
+Compared with stock midnight:
 
-thanks to all the [contributors](https://github.com/refact0r/midnight-discord/graphs/contributors)!
+- **Discord's look:** its own font, window buttons, DM button logo, user panel layout and thin unread divider.
+- **Onyx colours:** pure black panels, neutral greys instead of blue-tinted ones, and hover highlights that show up on black.
+- **Discord's colours for meaning:** status colours (online, idle, do not disturb) and red and green buttons. White text and icons wherever stock Discord uses them, and dark text on the theme's blue.
+- **Solid highlights:** mentions and replies get solid backgrounds instead of fading out to the right.
+- **Server settings as a floating popup** like user settings, with a pinned server name, pages that use the full width, and click outside to close.
+- **Plugin and detail fixes:** an open Better Folders folder joins onto the server list, the Game Activity Toggle icon matches the other panel icons, nameplates have square corners under the activity panel, and connection logos and quest labels are readable.
+
+The full list, with every changed setting, is in [`custom/CHANGELOG.md`](./custom/CHANGELOG.md).
+
+## How it stays up to date
+
+A daily GitHub Actions workflow ([`customBuild.yml`](./.github/workflows/customBuild.yml)) rebuilds the theme at about 02:17 UTC:
+
+1. It renames Discord classes in the custom rules, using the same bot ([`refact0r/class-update`](https://github.com/refact0r/class-update)) and rename list that the author uses for midnight.
+2. It downloads the author's latest midnight from [refact0r/midnight-discord](https://github.com/refact0r/midnight-discord). His own workflow keeps that current with Discord every day, and it includes any fixes he makes.
+3. It applies the changes in `custom/` and commits the new `custom/midnight-custom.theme.css`. The online theme link serves that file, so Vencord picks it up the next time Discord starts.
+
+If one of the custom changes stops applying (for example after Discord restructures a screen), the build fails and GitHub emails you, naming the change. The previous theme file stays in place until it's fixed.
+
+To rebuild straight away, open **Actions → Build custom theme → Run workflow**.
+
+## Making changes
+
+Edit the files in `custom/`, never `midnight-custom.theme.css` itself. Pushing a change to `custom/` rebuilds the theme.
+
+| File | What it holds |
+| --- | --- |
+| [`settings.css`](./custom/settings.css) | Your values for midnight's settings: colours, sizes and on/off options, one variable per line. |
+| [`additions.css`](./custom/additions.css) | Your own CSS rules, added after the theme. |
+| [`patches.json`](./custom/patches.json) | Small edits to the author's code, each with a note on why. |
+| [`build.mjs`](./custom/build.mjs) | The build script that combines the author's theme with the three files above. |
+| [`CHANGELOG.md`](./custom/CHANGELOG.md) | What each change does and why. |
+
+To build locally, run `node custom/build.mjs` with Node 18 or newer. It downloads the author's theme itself, so there's nothing else to set up.
+
+## If something looks wrong
+
+- **Unstyled or broken after a Discord update:** wait for the next daily build, since the class renames and the author's fixes usually arrive then. Or run the workflow by hand.
+- **The build failed:** its log names the change that no longer applies. Inspect the element in Discord (Ctrl+Shift+I), then update the class name or text in `additions.css` or `patches.json`.
+- **A jarring pure blue, lime, magenta, yellow or red:** that's one of midnight's unmapped colour placeholders. Find the variable with Inspect, then map it in `patches.json`, as was done for `--card-secondary-bg`.
+
+## Credits
+
+midnight is made by [refact0r](https://github.com/refact0r) and released under the MIT licence, kept in [`LICENSE`](./LICENSE). This repository only adds personal changes on top. If you like midnight, consider [supporting the author](https://github.com/refact0r/midnight-discord).

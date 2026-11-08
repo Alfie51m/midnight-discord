@@ -1,9 +1,10 @@
 // Builds custom/midnight-custom.theme.css: one self-contained theme file (no @import) made from
-// the author's current theme (themes/midnight.theme.css + build/midnight.css) with your changes applied:
+// the author's latest theme, downloaded from github.com/refact0r/midnight-discord
+// (build/midnight.css + themes/midnight.theme.css), with your changes applied:
 //   custom/patches.json   edits to build/midnight.css
 //   custom/settings.css   your values for the theme's settings variables
 //   custom/additions.css  your own rules, added at the end
-// Run: node custom/build.mjs   (exits 1 and names the problem if a change no longer applies)
+// Run: node custom/build.mjs   (Node 18+; exits 1 and names the problem if a change no longer applies)
 
 import { readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -13,8 +14,18 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (p) => readFileSync(join(root, p), 'utf8').replace(/\r\n/g, '\n');
 const problems = [];
 
+// the author's theme, straight from his repository (his own workflow keeps its class names current every day)
+const UPSTREAM = 'refact0r/midnight-discord';
+const branch = process.env.MIDNIGHT_BRANCH || 'master';
+const download = async (path) => {
+    const res = await fetch(`https://raw.githubusercontent.com/${UPSTREAM}/${branch}/${path}`);
+    if (!res.ok) throw new Error(`Could not download ${path} from ${UPSTREAM} (HTTP ${res.status})`);
+    return (await res.text()).replace(/\r\n/g, '\n');
+};
+const [upstreamBuild, upstreamTheme] = await Promise.all([download('build/midnight.css'), download('themes/midnight.theme.css')]);
+
 // 1. the author's bundled code, with your patches
-let bundle = read('build/midnight.css');
+let bundle = upstreamBuild;
 const { patches } = JSON.parse(read('custom/patches.json'));
 
 for (const p of patches) {
@@ -32,7 +43,7 @@ for (const p of patches) {
         // every definition of --name inside the bundle (they live in colors.css)
         const re = new RegExp(`(^\\s*--${p.name}:\\s*)[^;]*;`, 'gm');
         const count = (bundle.match(re) || []).length;
-        if (count === 0) problems.push(`${label}: --${p.name} is not defined in build/midnight.css`);
+        if (count === 0) problems.push(`${label}: --${p.name} is not defined in the author's build/midnight.css`);
         bundle = bundle.replace(re, `$1${p.value}; /* CUSTOMISED */`);
     } else if (p.type === 'rule') {
         // the one rule whose selector line is p.selector and whose body contains p.from
@@ -56,9 +67,9 @@ for (const p of patches) {
 }
 
 // 2. the author's settings, with your values
-const theme = read('themes/midnight.theme.css');
+const theme = upstreamTheme;
 const importLine = theme.match(/^@import url\([^)]*\);\s*$/m);
-if (!importLine) problems.push('themes/midnight.theme.css: no @import line found to split header from settings');
+if (!importLine) problems.push(`${UPSTREAM} themes/midnight.theme.css: no @import line found to split header from settings`);
 let settings = importLine ? theme.slice(importLine.index + importLine[0].length).trim() : '';
 
 for (const m of read('custom/settings.css').matchAll(/^--([\w-]+):\s*(.*?);\s*(\/\*.*\*\/)?\s*$/gm)) {
@@ -69,7 +80,7 @@ for (const m of read('custom/settings.css').matchAll(/^--([\w-]+):\s*(.*?);\s*(\
     } else {
         const after = comment.match(/after: --([\w-]+)/);
         const anchor = after && new RegExp(`^(\\s*)--${after[1]}:[^\\n]*$`, 'm').exec(settings);
-        if (!anchor) problems.push(`settings: --${name} is not in the theme and has no usable "after:" note`);
+        if (!anchor) problems.push(`settings: --${name} is not in the author's theme and has no usable "after:" note`);
         else {
             const at = anchor.index + anchor[0].length;
             settings = `${settings.slice(0, at)}\n${anchor[1]}--${name}: ${value}; /* CUSTOMISED: added */${settings.slice(at)}`;
@@ -88,7 +99,7 @@ if (problems.length) {
 const version = (theme.match(/@version\s+(\S+)/) || [])[1] || '?';
 const header = `/**
  * @name midnight (custom)
- * @description midnight ${version} with personal changes, bundled into one file (no imports). Built by custom/build.mjs, do not edit by hand.
+ * @description midnight ${version} by refact0r with personal changes, bundled into one file (no imports). Built by custom/build.mjs, do not edit by hand.
  * @author refact0r, customised by Alfie51m
  * @version ${version}
  * @source https://github.com/Alfie51m/midnight-discord
@@ -96,6 +107,6 @@ const header = `/**
 
 writeFileSync(
     join(root, 'custom/midnight-custom.theme.css'),
-    `${header}\n\n/* ===== midnight theme modules (build/midnight.css, with custom/patches.json applied) ===== */\n${bundle.trim()}\n\n/* ===== settings (themes/midnight.theme.css, with custom/settings.css applied) ===== */\n${settings}\n\n/* ===== your rules (custom/additions.css) ===== */\n${additions}\n`
+    `${header}\n\n/* ===== midnight theme modules (refact0r's build/midnight.css, with custom/patches.json applied) ===== */\n${bundle.trim()}\n\n/* ===== settings (refact0r's themes/midnight.theme.css, with custom/settings.css applied) ===== */\n${settings}\n\n/* ===== your rules (custom/additions.css) ===== */\n${additions}\n`
 );
 console.log(`Built custom/midnight-custom.theme.css from midnight ${version}: ${patches.length} patches applied.`);
