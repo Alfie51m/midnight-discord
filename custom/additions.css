@@ -124,10 +124,13 @@ body {
     background-color: var(--bg-4);
     border-bottom: var(--border-thickness) solid var(--border-subtle);
 }
+/* no stray margins inside the header (only inside: the header keeps its own margins) */
+.layer_Fd0FEH .standardSidebarView_jnk11m .side_6zZYhF > .header_6zZYhF:first-child * {
+    margin: 0;
+}
 /* discord sizes the text on an element inside the header, so size that too */
 .layer_Fd0FEH .standardSidebarView_jnk11m .side_6zZYhF > .header_6zZYhF:first-child,
 .layer_Fd0FEH .standardSidebarView_jnk11m .side_6zZYhF > .header_6zZYhF:first-child * {
-    margin: 0; /* an inner element's bottom margin was pushing the name off-centre */
     font-size: 16px; /* same as the server name in the channel list */
     line-height: 20px;
     font-weight: 600;
