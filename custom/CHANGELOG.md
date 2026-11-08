@@ -40,4 +40,4 @@ General rule: wherever stock Discord dark mode uses white text or icons on its o
 
 ## If something breaks
 
-If a Discord update leaves something unstyled, sync the fork and let the rebuild run first. If the rebuild fails, its log names the change that no longer applies: inspect the element in Discord, then update the class or text in `patches.json` or `additions.css`.
+If a Discord update leaves something unstyled, wait a day: the author's fix and the class renames usually arrive with the next daily build. If the build fails, its log names the change that no longer applies: inspect the element in Discord, then update the class or text in `patches.json` or `additions.css`.

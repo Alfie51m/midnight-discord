@@ -1,12 +1,12 @@
 /**
  * @name midnight (custom)
- * @description midnight 2.1.1 with personal changes, bundled into one file (no imports). Built by custom/build.mjs, do not edit by hand.
+ * @description midnight 2.1.1 by refact0r with personal changes, bundled into one file (no imports). Built by custom/build.mjs, do not edit by hand.
  * @author refact0r, customised by Alfie51m
  * @version 2.1.1
  * @source https://github.com/Alfie51m/midnight-discord
  */
 
-/* ===== midnight theme modules (build/midnight.css, with custom/patches.json applied) ===== */
+/* ===== midnight theme modules (refact0r's build/midnight.css, with custom/patches.json applied) ===== */
 /* main.css */
 
 :root {
@@ -2280,7 +2280,7 @@ body {
     }
 }
 
-/* ===== settings (themes/midnight.theme.css, with custom/settings.css applied) ===== */
+/* ===== settings (refact0r's themes/midnight.theme.css, with custom/settings.css applied) ===== */
 body {
     /* font options */
     --font: ''; /* CUSTOMISED */ /* change to '' for default discord font */

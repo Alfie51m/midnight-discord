@@ -1,18 +1,18 @@
 name: Build custom theme
 
-# Rebuilds custom/midnight-custom.theme.css from the author's latest theme with your changes applied.
-# Runs every day (after the author's class update, which runs at 00:00 UTC), whenever the theme or
-# your custom files change, and on demand from the Actions tab ("Run workflow").
+# Rebuilds custom/midnight-custom.theme.css from the author's latest theme (downloaded from
+# refact0r/midnight-discord) with the changes in custom/ applied.
+# Runs every day (after the author's own class update at 00:00 UTC), whenever custom/ changes,
+# and on demand from the Actions tab ("Run workflow").
 
 on:
   schedule:
-    - cron: "17 1 * * *"
+    - cron: "17 2 * * *"
   push:
     branches: [master]
     paths:
-      - "build/**"
-      - "themes/midnight.theme.css"
       - "custom/**"
+      - "!custom/midnight-custom.theme.css"
       - ".github/workflows/customBuild.yml"
   workflow_dispatch:
 
@@ -29,7 +29,8 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      # keep Discord class names in your own rules and patches current (same rename list the author uses)
+      # keep Discord class names in your own rules and patches current, with the same bot and
+      # rename list the author uses for his theme
       - uses: refact0r/class-update@v3
         with:
           folder: custom
@@ -45,7 +46,8 @@ jobs:
         with:
           node-version: 22
 
-      # fails, and GitHub emails you, if one of your changes no longer applies
+      # downloads the author's latest theme and applies your changes; fails (and GitHub emails you)
+      # if one of your changes no longer applies, leaving the last good theme file in place
       - run: node custom/build.mjs
 
       - uses: EndBug/add-and-commit@v10
