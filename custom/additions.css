@@ -120,7 +120,7 @@ body {
     box-sizing: border-box;
     height: 64px;
     margin: 0 -16px 8px;
-    padding: 0 28px;
+    padding: 12px 28px 0; /* the font's box sits the letters high, so centre them a little lower */
     background-color: var(--bg-4);
     border-bottom: var(--border-thickness) solid var(--border-subtle);
 }
