@@ -4,6 +4,7 @@ name: Build custom theme
 # refact0r/midnight-discord) with the changes in custom/ applied.
 # Runs every day (after the author's own class update at 00:00 UTC), whenever custom/ changes,
 # and on demand from the Actions tab ("Run workflow").
+# On pull requests it only checks that the theme still builds, without committing anything.
 
 on:
   schedule:
@@ -14,10 +15,13 @@ on:
       - "custom/**"
       - "!custom/midnight-custom.theme.css"
       - ".github/workflows/customBuild.yml"
+  pull_request:
+    branches: [master]
   workflow_dispatch:
 
 permissions:
   contents: write
+  issues: write
 
 concurrency:
   group: custom-build
@@ -69,9 +73,40 @@ jobs:
         env:
           MIDNIGHT_DIR: .midnight
 
+      # opens an issue when the author changes styling for a class our own rules or patches also use: the build
+      # can't catch those clashes, since nothing fails. Records his latest commit in custom/upstream.json.
+      - name: Check the author's changes against ours
+        if: github.event_name != 'pull_request'
+        run: node custom/watch-upstream.mjs
+        env:
+          REPORT_FILE: .midnight/upstream-report.md
+      # needs Issues turned on in the repository settings; if it fails, the theme is still committed
+      - name: Open an issue about them
+        if: github.event_name != 'pull_request' && hashFiles('.midnight/upstream-report.md') != ''
+        continue-on-error: true
+        run: gh issue create --title "midnight changed styling our customisations also use" --body-file .midnight/upstream-report.md
+        env:
+          GH_TOKEN: ${{ github.token }}
+
       - uses: EndBug/add-and-commit@cc9c08ba6c8df3b93a8f2db63e89b98368ae2ae8 # v11.1.1
+        if: github.event_name != 'pull_request'
         with:
           default_author: github_actions
           message: "build custom theme"
           add: custom
           fetch: true
+
+      # GitHub pauses scheduled workflows after 60 days without activity in the repository, and this build only
+      # commits when something changes. If the last commit is over 50 days old, add an empty one to keep it running.
+      - name: Keep the daily build active
+        if: github.event_name != 'pull_request'
+        run: |
+          git pull --quiet --ff-only
+          age=$(( ( $(date +%s) - $(git log -1 --format=%ct) ) / 86400 ))
+          echo "Last commit was $age days ago."
+          if [ "$age" -ge 50 ]; then
+            git config user.name "github-actions"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit --allow-empty -m "keep the scheduled build active"
+            git push
+          fi

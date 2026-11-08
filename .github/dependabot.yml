@@ -1,0 +1,10 @@
+# Opens a pull request when an action used in .github/workflows has a new release, including the pinned
+# ones (it updates the commit and its version comment). The build check runs on each of those pull requests.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: "ci"
