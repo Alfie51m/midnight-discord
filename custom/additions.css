@@ -256,10 +256,16 @@ body {
 .layer_Fd0FEH:has(> div > .standardSidebarView_jnk11m) {
     background: hsl(0, 0%, 0%, 0.6); /* dims the app behind, like user settings */
     transform: none !important; /* skip discord's scale animation (redrawing a full-window layer each frame), keep the fade */
-    z-index: 10000; /* above everything in the app behind it, including the title bar and window buttons */
+    z-index: 1050; /* above everything in the app behind it, including midnight's title bar buttons (1000) */
 }
 .layers_Fd0FEH:has(> .layer_Fd0FEH > div > .standardSidebarView_jnk11m) > .baseLayer_Fd0FEH {
     opacity: 1 !important;
     transform: none !important;
     visibility: visible !important;
+}
+/* the window buttons can't be layered under the popup (the desktop app keeps them on top), so make them look and act
+   covered while server or channel settings are open: dimmed like the backdrop and not reacting to the mouse */
+.appMount_gEkNtR:has(> * > * > * > .app_QbT-Jy > .layers_Fd0FEH > .layer_Fd0FEH > div > .standardSidebarView_jnk11m) .winButtons_3zSH5d {
+    opacity: 0.4;
+    pointer-events: none;
 }
