@@ -11,7 +11,7 @@ General rule: wherever stock Discord dark mode uses white text or icons on its o
 | DM button | Discord logo instead of the moon, coloured like the add server and discovery icons. |
 | User panel | Full width under the server list, like stock (`--small-user-panel: off`). |
 | Animations | No slide-out when hovering channels, DMs and members. |
-| Backgrounds | Onyx-style: pure black panels, #101013 message box and gaps, neutral greys. |
+| Backgrounds | Onyx-style: pure black panels, #101013 message box, a darker #09090b behind the panels (`--bg-app`), neutral greys. |
 | Text | Neutral Onyx-matched greys instead of blue-tinted ones. |
 | Hover | Neutral and strong enough to show on black, for channels, buttons and messages. |
 | Mentions and replies | Solid backgrounds instead of fading to the right (blue for mentions, grey for replying-to and jump highlights). |

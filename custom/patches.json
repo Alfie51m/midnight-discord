@@ -216,6 +216,13 @@
       "type": "var",
       "name": "card-secondary-bg",
       "value": "var(--bg-2)"
+    },
+    {
+      "why": "the background behind the panels has its own setting, darker than --bg-3 (which the message box also uses)",
+      "type": "rule",
+      "selector": ".bg_Fd0FEH /* main background */ {",
+      "from": "var(--bg-3)",
+      "to": "var(--bg-app)"
     }
   ]
 }
