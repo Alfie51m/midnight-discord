@@ -66,11 +66,11 @@ body {
 
 /* ===== CUSTOMISED: server and channel settings as a floating popup, like user settings =====
    Discord still draws these full screen. Float the panel with the same insets as the user settings popup
-   (64px top/bottom, 80px sides), dim the app behind it, and give it the same black sidebar with a divider and a centred content column. */
+   (66px top/bottom, 84px sides), dim the app behind it, and give it the same black sidebar with a divider and a centred content column. */
 .layer_Fd0FEH .standardSidebarView_jnk11m {
     /* layer prefix: discord's settings styles load after the theme, so a single class loses on position and top */
-    --settings-popup-inset-y: 64px;
-    --settings-popup-inset-x: 80px;
+    --settings-popup-inset-y: 66px; /* same as the user settings popup */
+    --settings-popup-inset-x: 84px;
     position: fixed; /* placed against the window; discord may keep it absolute, which still lands close */
     inset: var(--settings-popup-inset-y) var(--settings-popup-inset-x);
     width: auto;
@@ -262,10 +262,4 @@ body {
     opacity: 1 !important;
     transform: none !important;
     visibility: visible !important;
-}
-/* the window buttons can't be layered under the popup (the desktop app keeps them on top), so make them look and act
-   covered while server or channel settings are open: dimmed like the backdrop and not reacting to the mouse */
-.appMount_gEkNtR:has(> * > * > * > .app_QbT-Jy > .layers_Fd0FEH > .layer_Fd0FEH > div > .standardSidebarView_jnk11m) .winButtons_3zSH5d {
-    opacity: 0.4;
-    pointer-events: none;
 }
