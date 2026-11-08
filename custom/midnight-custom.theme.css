@@ -2502,10 +2502,6 @@ body {
     border-radius: var(--radius-lg);
     overflow: hidden;
     backdrop-filter: none; /* a filter here would trap the click-outside area below inside the popup */
-    z-index: 0; /* own stacking layer, so the click-outside area below sits under the popup's contents. Set explicitly
-                   because discord keeps this panel position: absolute, which alone doesn't make one */
-}
-.layer_Fd0FEH .standardSidebarView_jnk11m {
     display: flex;
     align-items: stretch;
 }
@@ -2646,30 +2642,22 @@ body {
     max-width: none;
 }
 /* click outside the popup to close it, like user settings. The close button gets an invisible area covering the
-   whole window. The popup is its own stacking layer (z-index: 0) and nothing between it and the button makes
+   whole window. The popup is its own stacking layer (position: fixed) and nothing between it and the button makes
    another, so z-index -1 puts the area under all of the popup's contents: clicks inside the popup reach the popup,
    and only clicks outside it reach the close button. */
-/* no press/hover transform on the button or its wrapper: a transform turns it into the frame for the fixed area below,
+/* no press transform on the button or its wrapper: a transform turns it into the frame for the fixed area below,
    which then shrinks to the button mid-click, so the click ends up on the layer instead */
 .layer_Fd0FEH .standardSidebarView_jnk11m :is(.container_e76OBR, .closeButton_e76OBR),
 .layer_Fd0FEH .standardSidebarView_jnk11m :is(.container_e76OBR, .closeButton_e76OBR):is(:hover, :active, :focus) {
     transform: none !important;
-    filter: none !important;
-    will-change: auto !important;
 }
 .layer_Fd0FEH .standardSidebarView_jnk11m .closeButton_e76OBR::before {
     content: '';
     display: block;
     position: fixed;
     inset: 0;
-    width: auto;
-    height: auto;
     z-index: -1;
-    visibility: visible;
     pointer-events: auto;
-    background: none;
-    border: none;
-    transform: none;
     cursor: default;
 }
 /* see the app behind the popup, like user settings: no background on the settings layer, and keep the main app
