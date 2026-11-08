@@ -41,6 +41,14 @@ A daily GitHub Actions workflow ([`customBuild.yml`](./.github/workflows/customB
 
 If one of the custom changes stops applying (for example after Discord restructures a screen), the build fails and GitHub emails you, naming the change. The previous theme file stays in place until it's fixed.
 
+Some clashes don't make anything fail, for example if the author restyles an element that the custom rules also style. So each build also compares the author's latest version with the last one it saw ([`watch-upstream.mjs`](./custom/watch-upstream.mjs)). If a changed line uses a Discord class that the custom rules or patches also use, it opens an issue listing them, so you know what to check in Discord.
+
+Three smaller safeguards:
+
+- **Pull requests are checked:** the theme is built for every pull request, so a broken change shows as a failed check before merging. Nothing is committed from a pull request.
+- **Actions stay up to date:** Dependabot ([`dependabot.yml`](./.github/dependabot.yml)) opens a pull request when an action the workflow uses has a new release.
+- **The daily build stays on:** GitHub pauses scheduled workflows after 60 days without activity. If nothing has been committed for 50 days, the build adds an empty commit to keep it running.
+
 To rebuild straight away, open **Actions → Build custom theme → Run workflow**.
 
 ## Making changes
@@ -53,6 +61,7 @@ Edit the files in `custom/`, never `midnight-custom.theme.css` itself. Pushing a
 | [`additions.css`](./custom/additions.css) | Your own CSS rules, added after the theme. |
 | [`patches.json`](./custom/patches.json) | Small edits to the author's code, each with a note on why. |
 | [`build.mjs`](./custom/build.mjs) | The build script that combines the author's theme with the three files above. |
+| [`watch-upstream.mjs`](./custom/watch-upstream.mjs) | Flags the author's changes that touch classes the custom files use. It records his last seen version in `upstream.json`. |
 | [`CHANGELOG.md`](./custom/CHANGELOG.md) | What each change does and why. |
 
 To build locally, run `node custom/build.mjs` with Node 18 or newer. It downloads the author's theme itself, so there's nothing else to set up. (The workflow sets `MIDNIGHT_DIR` to build from its renamed copy instead.)

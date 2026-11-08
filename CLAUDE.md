@@ -8,7 +8,9 @@ A personal build of refact0r's [midnight](https://github.com/refact0r/midnight-d
 - `custom/settings.css`: values for midnight's settings variables, replaced by name. A new variable needs an `after: --name.` note in its comment.
 - `custom/patches.json`: edits to the author's bundle. `var` sets a variable everywhere, `rule` replaces text inside the one rule with that exact selector line, `replace` and `remove-line` match exact text. Each patch must match, or the build fails.
 - `custom/additions.css`: our own rules, appended last.
-- `.github/workflows/customBuild.yml` runs daily: it downloads midnight into `.midnight/`, renames classes in it and in `custom/` with the pinned `refact0r/class-update`, builds, and commits.
+- `.github/workflows/customBuild.yml` runs daily: it downloads midnight into `.midnight/`, renames classes in it and in `custom/` with the pinned `refact0r/class-update`, builds, and commits. On pull requests it only builds. It also adds an empty commit if the repository has been quiet for 50 days, so GitHub doesn't pause the schedule.
+- `custom/watch-upstream.mjs` diffs the author's `src/` between the commit in `custom/upstream.json` and his latest, ignoring pure class renames, and the workflow opens an issue when a changed line uses a class from `additions.css` or `patches.json`.
+- `.github/dependabot.yml` opens pull requests for new action releases.
 - `custom/CHANGELOG.md` lists every change and why. Keep it in step with any change you make.
 
 ## Rules
