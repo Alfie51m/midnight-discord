@@ -17,6 +17,7 @@
 --bg-2: hsla(240, 7%, 11%, 1); /* onyx-matched. was: hsla(220, 15%, 16%, 1) */
 --bg-3: hsla(240, 9%, 7%, 1); /* onyx message box (#101013), also the gaps between panels. was: hsla(220, 15%, 13%, 1) */
 --bg-4: hsla(0, 0%, 0%, 1); /* onyx pure black panels. was: hsla(220, 15%, 10%, 1) */
+--bg-app: hsl(240, 8%, 4%); /* background behind the panels (#09090b). after: --bg-4. was: var(--bg-3) */
 --hover: hsla(220, 5%, 50%, 0.15); /* neutral, strong enough to show on black. was: hsla(221, 19%, 40%, 0.1) */
 --active: hsla(220, 5%, 50%, 0.2); /* onyx-matched. was: hsla(220, 19%, 40%, 0.2) */
 --active-2: hsla(220, 5%, 50%, 0.3); /* onyx-matched. was: hsla(220, 19%, 40%, 0.3) */

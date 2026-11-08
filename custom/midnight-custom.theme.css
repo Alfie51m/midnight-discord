@@ -1343,7 +1343,7 @@ body {
     }
 
     .bg_Fd0FEH /* main background */ {
-        background: var(--bg-3);
+        background: var(--bg-app); /* CUSTOMISED */
     }
 
     .clickable_ybUK7Z .icon_ybUK7Z /* main top bar icons */,
@@ -2357,6 +2357,7 @@ body {
     --bg-2: hsla(240, 7%, 11%, 1); /* CUSTOMISED */ /* dark buttons */
     --bg-3: hsla(240, 9%, 7%, 1); /* CUSTOMISED */ /* spacing, secondary elements */
     --bg-4: hsla(0, 0%, 0%, 1); /* CUSTOMISED */ /* main background color */
+    --bg-app: hsl(240, 8%, 4%); /* CUSTOMISED: added */
     --hover: hsla(220, 5%, 50%, 0.15); /* CUSTOMISED */ /* channels and buttons when hovered */
     --active: hsla(220, 5%, 50%, 0.2); /* CUSTOMISED */ /* channels and buttons when clicked or selected */
     --active-2: hsla(220, 5%, 50%, 0.3); /* CUSTOMISED */ /* extra state for transparent buttons */
