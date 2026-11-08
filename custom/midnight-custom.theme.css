@@ -2537,11 +2537,19 @@ body {
     position: sticky;
     top: 0;
     z-index: 1;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    height: 72px;
     margin: 0 -16px 8px;
-    padding: 22px 28px 16px;
+    padding: 0 28px;
     background-color: var(--bg-4);
     border-bottom: var(--border-thickness) solid var(--border-subtle);
-    font-size: 18px;
+}
+/* discord sizes the text on an element inside the header, so size that too */
+.layer_Fd0FEH .standardSidebarView_jnk11m .side_6zZYhF > .header_6zZYhF:first-child,
+.layer_Fd0FEH .standardSidebarView_jnk11m .side_6zZYhF > .header_6zZYhF:first-child * {
+    font-size: 20px;
     line-height: 1.3;
     font-weight: 700;
     text-transform: none;
