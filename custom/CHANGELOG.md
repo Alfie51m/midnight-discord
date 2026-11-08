@@ -36,7 +36,7 @@ General rule: wherever stock Discord dark mode uses white text or icons on its o
 | Game Activity Toggle icon | Over a nameplate, all user panel icons are the same near-white. |
 | Square nameplate top | The nameplate's top corners are square when the game activity or voice panel sits above the user row. |
 | Floating server settings | Server and channel settings float like the user settings popup: 66px/84px insets with the app dimmed behind, a 316px black sidebar with a divider, centred content (forms up to 900px, list pages like roles and invites up to 1200px), a plain X close button in the top-right corner, and clicking outside closes it. Discord's popups (confirmations, invites, stickers, menus) are lifted to 1100 so they open in front of it. |
-| Nitro page | Rounded, bordered panel like the others, and a translucent top bar with a divider, as tall as the channel header (midnight's own selectors for this page are out of date). |
+| Nitro page | Rounded, bordered panel like the others, and a solid black top bar with a divider like the shop's, as tall as the channel header (midnight's own selectors for this page are out of date). |
 | Dark text on the theme's blue | Blue-backed elements that use Discord's `--white` (unread badges, mention pills, unread bars, the NEW tag, bot tags) get dark text. |
 
 ## If something breaks

@@ -2692,13 +2692,12 @@ body {
 .homeWrapper_8iSxT3 > .scroller_0fgkqL:hover {
     border-color: var(--border-hover);
 }
-/* the nav bar: a translucent bar with a divider that page content scrolls under, as tall as the channel header
-   so its links line up with midnight's title bar buttons (inbox, dev tools) floating beside it */
+/* the nav bar: solid black like the shop's, with a divider that page content scrolls under, as tall as the channel
+   header so its links line up with midnight's title bar buttons (inbox, dev tools) floating beside it */
 .scroller_0fgkqL .navBar_jHfUxk {
     height: var(--custom-channel-header-height);
     margin-bottom: 0;
-    background-color: hsl(0, 0%, 0%, 0.6);
-    backdrop-filter: blur(16px);
+    background-color: var(--bg-4);
     border-bottom: var(--border-thickness) solid var(--border-subtle);
 }
 .scroller_0fgkqL .navBar_jHfUxk :is(.upperContainer_ybUK7Z, .children_ybUK7Z, .navBarContent_jHfUxk) {
