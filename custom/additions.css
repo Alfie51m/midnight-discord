@@ -63,3 +63,191 @@ body {
     --white: var(--text-on-accent);
     --white-500: var(--text-on-accent);
 }
+
+/* ===== CUSTOMISED: server and channel settings as a floating popup, like user settings =====
+   Discord still draws these full screen. Float the panel with the same insets as the user settings popup
+   (66px top/bottom, 84px sides), dim the app behind it, and give it the same black sidebar with a divider and a centred content column. */
+.layer_Fd0FEH .standardSidebarView_jnk11m {
+    /* layer prefix: discord's settings styles load after the theme, so a single class loses on position and top */
+    --settings-popup-inset-y: 66px; /* same as the user settings popup */
+    --settings-popup-inset-x: 84px;
+    position: fixed !important; /* against the window: discord forces absolute, which places it against a layer whose offset varies */
+    inset: var(--settings-popup-inset-y) var(--settings-popup-inset-x);
+    width: auto;
+    height: auto;
+    background-color: var(--bg-4);
+    border: var(--border-thickness) solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    backdrop-filter: none; /* a filter here would trap the click-outside area below inside the popup */
+    display: flex;
+    align-items: stretch;
+}
+/* both sides fill the popup's height (discord sizes them to the window, which pushed the content up) */
+.layer_Fd0FEH .standardSidebarView_jnk11m :is(.sidebarRegion_jnk11m, .contentRegion_jnk11m, .sidebarRegionScroller_jnk11m, .contentRegionScroller_jnk11m) {
+    height: 100%;
+    max-height: 100%;
+    min-height: 0;
+}
+/* sidebar: 316px like user settings, menu filling it from the left */
+.layer_Fd0FEH .standardSidebarView_jnk11m .sidebarRegion_jnk11m {
+    flex: 0 0 316px;
+    width: 316px;
+    justify-content: flex-start;
+    border-right: var(--border-thickness) solid var(--border-subtle);
+}
+.layer_Fd0FEH .standardSidebarView_jnk11m .sidebarRegionScroller_jnk11m {
+    width: 100%;
+    background-color: var(--bg-4);
+}
+.layer_Fd0FEH .standardSidebarView_jnk11m .sidebar_jnk11m {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0 16px 20px;
+}
+/* server name: its own header at the top of the menu, bigger, and pinned while the menu scrolls under it */
+.layer_Fd0FEH .standardSidebarView_jnk11m .side_6zZYhF > .header_6zZYhF:first-child {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    height: 64px;
+    margin: 0 -16px 8px;
+    padding: 12px 28px 0; /* the font's box sits the letters high, so centre them a little lower */
+    background-color: var(--bg-4);
+    border-bottom: var(--border-thickness) solid var(--border-subtle);
+}
+/* no stray margins inside the header (only inside: the header keeps its own margins) */
+.layer_Fd0FEH .standardSidebarView_jnk11m .side_6zZYhF > .header_6zZYhF:first-child * {
+    margin: 0;
+}
+/* discord sizes the text on an element inside the header, so size that too */
+.layer_Fd0FEH .standardSidebarView_jnk11m .side_6zZYhF > .header_6zZYhF:first-child,
+.layer_Fd0FEH .standardSidebarView_jnk11m .side_6zZYhF > .header_6zZYhF:first-child * {
+    font-size: 16px; /* same as the server name in the channel list */
+    line-height: 20px;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: normal;
+    color: var(--text-1);
+}
+/* content: fills the rest, centred column */
+.layer_Fd0FEH .standardSidebarView_jnk11m .contentRegion_jnk11m {
+    position: relative;
+    flex: 1 1 auto;
+}
+/* every page centred in the popup: forms up to 900px, list pages (roles, invites, bans...) up to 1200px */
+.layer_Fd0FEH .standardSidebarView_jnk11m :is(.contentColumn_jnk11m, .customColumn_jnk11m) {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    box-sizing: border-box;
+}
+.layer_Fd0FEH .standardSidebarView_jnk11m .contentColumnDefault_jnk11m {
+    max-width: 900px;
+}
+/* pages inside a column (edit role...) carry discord's own 740px width: let them fill the column */
+.layer_Fd0FEH .standardSidebarView_jnk11m :is(.contentColumn_jnk11m, .customColumn_jnk11m) > * {
+    width: auto;
+    max-width: none;
+}
+/* list pages (roles, audit log, invites...) scroll in their own inner scroller, whose content is capped at 660px
+   with a 40px left margin: centre it and let it grow like the other pages */
+/* (the content box's name differs per page, e.g. content_tqapBM on roles, content_ohxi6x on audit log) */
+.layer_Fd0FEH .standardSidebarView_jnk11m .customScroller_jnk11m > [class*='content_'] {
+    width: auto;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: 40px;
+    box-sizing: border-box;
+}
+/* close button in the popup's top-right corner, like user settings. It sits inside the scrolling content, so the
+   scroller stops being its positioning frame (static) and it's placed against the non-scrolling content region
+   instead, without discord's 60px top padding. */
+.layer_Fd0FEH .standardSidebarView_jnk11m .contentRegionScroller_jnk11m {
+    position: static;
+}
+.layer_Fd0FEH .standardSidebarView_jnk11m .toolsContainer_jnk11m {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0;
+}
+.layer_Fd0FEH .standardSidebarView_jnk11m .tools_jnk11m {
+    position: static;
+    margin: 0;
+    padding: 0;
+}
+/* plain X like user settings, instead of discord's circle with an ESC label */
+.layer_Fd0FEH .standardSidebarView_jnk11m .keybind_e76OBR {
+    display: none;
+}
+.layer_Fd0FEH .standardSidebarView_jnk11m .closeButton_e76OBR,
+.layer_Fd0FEH .standardSidebarView_jnk11m .closeButton_e76OBR:hover {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: var(--radius-sm);
+    background-color: transparent;
+    color: var(--text-4);
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+/* the icon fills the button, and the highlight follows the icon rather than the button: hovering the click-outside
+   area below also counts as hovering the button, but not the icon */
+.layer_Fd0FEH .standardSidebarView_jnk11m .closeButton_e76OBR > svg {
+    width: 100%;
+    height: 100%;
+    padding: 7px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.layer_Fd0FEH .standardSidebarView_jnk11m .closeButton_e76OBR:has(> svg:hover) {
+    background-color: var(--hover);
+    color: var(--text-2);
+}
+/* edit role: the editor beside the role list doesn't grow, and its form is capped at 508px */
+.layer_Fd0FEH .standardSidebarView_jnk11m .contentContainer_cKeB2a {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+.layer_Fd0FEH .standardSidebarView_jnk11m .contentContainer_cKeB2a .contentWidth_tLZg6c {
+    max-width: none;
+}
+/* click outside the popup to close it, like user settings. The close button gets an invisible area covering the
+   whole window. The popup is its own stacking layer (position: fixed) and nothing between it and the button makes
+   another, so z-index -1 puts the area under all of the popup's contents: clicks inside the popup reach the popup,
+   and only clicks outside it reach the close button. */
+/* no press transform on the button or its wrapper: a transform turns it into the frame for the fixed area below,
+   which then shrinks to the button mid-click, so the click ends up on the layer instead */
+.layer_Fd0FEH .standardSidebarView_jnk11m :is(.container_e76OBR, .closeButton_e76OBR),
+.layer_Fd0FEH .standardSidebarView_jnk11m :is(.container_e76OBR, .closeButton_e76OBR):is(:hover, :active, :focus) {
+    transform: none !important;
+}
+.layer_Fd0FEH .standardSidebarView_jnk11m .closeButton_e76OBR::before {
+    content: '';
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: auto;
+    cursor: default;
+}
+/* see the app behind the popup, like user settings: no background on the settings layer, and keep the main app
+   layer showing (discord fades and shrinks it out with inline styles while a full-screen layer is open,
+   so !important is needed). Only while server or channel settings are open. */
+.layer_Fd0FEH:has(> div > .standardSidebarView_jnk11m) {
+    background: hsl(0, 0%, 0%, 0.6); /* dims the app behind, like user settings */
+    transform: none !important; /* skip discord's scale animation (redrawing a full-window layer each frame), keep the fade */
+    z-index: 1050; /* above everything in the app behind it, including midnight's title bar buttons (1000) */
+}
+.layers_Fd0FEH:has(> .layer_Fd0FEH > div > .standardSidebarView_jnk11m) > .baseLayer_Fd0FEH {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+}

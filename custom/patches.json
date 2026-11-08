@@ -196,6 +196,26 @@
       "selector": ".highlight {",
       "from": "var(--text-0)",
       "to": "var(--text-on-accent)"
+    },
+    {
+      "why": "visible hover in the server settings menu (was the same colour as the sidebar)",
+      "type": "rule",
+      "selector": ".side_6zZYhF .item_6zZYhF:hover /* settings tab */ {",
+      "from": "var(--bg-3)",
+      "to": "var(--hover)"
+    },
+    {
+      "why": "visible selected item in the server settings menu",
+      "type": "rule",
+      "selector": ".side_6zZYhF .item_6zZYhF.selected_6zZYhF {",
+      "from": "var(--bg-2)",
+      "to": "var(--active)"
+    },
+    {
+      "why": "placeholder blue (unmapped by the author) showed on expanded audit log entries",
+      "type": "var",
+      "name": "card-secondary-bg",
+      "value": "var(--bg-2)"
     }
   ]
 }
