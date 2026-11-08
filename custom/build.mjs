@@ -14,10 +14,15 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (p) => readFileSync(join(root, p), 'utf8').replace(/\r\n/g, '\n');
 const problems = [];
 
-// the author's theme, straight from his repository (his own workflow keeps its class names current every day)
+// the author's theme, straight from his repository (his own workflow keeps its class names current every day).
+// With MIDNIGHT_DIR set, it's read from that folder instead, keeping his paths (build/midnight.css,
+// themes/midnight.theme.css): the workflow downloads it there first and renames its classes with the same list
+// as custom/, so both sides always match even if the list changed since his own daily update.
 const UPSTREAM = 'refact0r/midnight-discord';
 const branch = process.env.MIDNIGHT_BRANCH || 'master';
+const localDir = process.env.MIDNIGHT_DIR;
 const download = async (path) => {
+    if (localDir) return readFileSync(join(localDir, path), 'utf8').replace(/\r\n/g, '\n');
     const res = await fetch(`https://raw.githubusercontent.com/${UPSTREAM}/${branch}/${path}`);
     if (!res.ok) throw new Error(`Could not download ${path} from ${UPSTREAM} (HTTP ${res.status})`);
     return (await res.text()).replace(/\r\n/g, '\n');

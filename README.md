@@ -35,8 +35,8 @@ The full list, with every changed setting, is in [`custom/CHANGELOG.md`](./custo
 
 A daily GitHub Actions workflow ([`customBuild.yml`](./.github/workflows/customBuild.yml)) rebuilds the theme at about 02:17 UTC:
 
-1. It renames Discord classes in the custom rules, using the same bot ([`refact0r/class-update`](https://github.com/refact0r/class-update)) and rename list that the author uses for midnight.
-2. It downloads the author's latest midnight from [refact0r/midnight-discord](https://github.com/refact0r/midnight-discord). His own workflow keeps that current with Discord every day, and it includes any fixes he makes.
+1. It downloads the author's latest midnight from [refact0r/midnight-discord](https://github.com/refact0r/midnight-discord), including any fixes he has made.
+2. It renames Discord classes in both his theme and the custom rules, using the same bot ([`refact0r/class-update`](https://github.com/refact0r/class-update), pinned to an exact version) and rename list that the author uses. Renaming both sides together keeps them matched, even if the list changed after his own daily update.
 3. It applies the changes in `custom/` and commits the new `custom/midnight-custom.theme.css`. The online theme link serves that file, so Vencord picks it up the next time Discord starts.
 
 If one of the custom changes stops applying (for example after Discord restructures a screen), the build fails and GitHub emails you, naming the change. The previous theme file stays in place until it's fixed.
@@ -55,7 +55,7 @@ Edit the files in `custom/`, never `midnight-custom.theme.css` itself. Pushing a
 | [`build.mjs`](./custom/build.mjs) | The build script that combines the author's theme with the three files above. |
 | [`CHANGELOG.md`](./custom/CHANGELOG.md) | What each change does and why. |
 
-To build locally, run `node custom/build.mjs` with Node 18 or newer. It downloads the author's theme itself, so there's nothing else to set up.
+To build locally, run `node custom/build.mjs` with Node 18 or newer. It downloads the author's theme itself, so there's nothing else to set up. (The workflow sets `MIDNIGHT_DIR` to build from its renamed copy instead.)
 
 ## If something looks wrong
 

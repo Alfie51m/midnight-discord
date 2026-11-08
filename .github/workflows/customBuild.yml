@@ -29,14 +29,30 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      # keep Discord class names in your own rules and patches current, with the same bot and
-      # rename list the author uses for his theme
-      - uses: refact0r/class-update@v3
+      # the author's latest theme, kept in his folder layout in .midnight (git-ignored; the action only accepts folders inside the checkout)
+      - name: Download midnight
+        run: |
+          mkdir -p ".midnight/build" ".midnight/themes"
+          curl -fsSL -o ".midnight/build/midnight.css" https://raw.githubusercontent.com/refact0r/midnight-discord/master/build/midnight.css
+          curl -fsSL -o ".midnight/themes/midnight.theme.css" https://raw.githubusercontent.com/refact0r/midnight-discord/master/themes/midnight.theme.css
+
+      # update Discord class names with the same bot and rename list the author uses, on both his theme and
+      # your files, so the two always match even if the list changed since his own daily update.
+      # Pinned to an exact commit (v3) so the action only changes when you choose to update it.
+      - name: Rename classes in midnight
+        uses: refact0r/class-update@91c225aaafcf7f7bc7032a8855d65eca05a6952b # v3
+        with:
+          folder: .midnight
+          ext: css
+          diff: https://raw.githubusercontent.com/SyndiShanX/Update-Classes/main/Changes.txt
+      - name: Rename classes in custom rules
+        uses: refact0r/class-update@91c225aaafcf7f7bc7032a8855d65eca05a6952b # v3
         with:
           folder: custom
           ext: css
           diff: https://raw.githubusercontent.com/SyndiShanX/Update-Classes/main/Changes.txt
-      - uses: refact0r/class-update@v3
+      - name: Rename classes in custom patches
+        uses: refact0r/class-update@91c225aaafcf7f7bc7032a8855d65eca05a6952b # v3
         with:
           folder: custom
           ext: json
@@ -46,9 +62,12 @@ jobs:
         with:
           node-version: 22
 
-      # downloads the author's latest theme and applies your changes; fails (and GitHub emails you)
-      # if one of your changes no longer applies, leaving the last good theme file in place
-      - run: node custom/build.mjs
+      # applies your changes to the renamed theme; fails (and GitHub emails you) if one of your changes
+      # no longer applies, leaving the last good theme file in place
+      - name: Build theme
+        run: node custom/build.mjs
+        env:
+          MIDNIGHT_DIR: .midnight
 
       - uses: EndBug/add-and-commit@v10
         with:
