@@ -2543,6 +2543,10 @@ body {
     background-color: var(--bg-4);
     border-bottom: var(--border-thickness) solid var(--border-subtle);
 }
+/* channel settings: the header shows the channel name then its category; keep just the icon and name */
+.layer_Fd0FEH .standardSidebarView_jnk11m .side_6zZYhF > .header_6zZYhF:first-child .header_EMttMj > span:nth-of-type(n+2) {
+    display: none;
+}
 /* no stray margins inside the header (only inside: the header keeps its own margins) */
 .layer_Fd0FEH .standardSidebarView_jnk11m .side_6zZYhF > .header_6zZYhF:first-child * {
     margin: 0;
@@ -2664,7 +2668,8 @@ body {
 /* see the app behind the popup, like user settings: no background on the settings layer, and keep the main app
    layer showing (discord fades and shrinks it out with inline styles while a full-screen layer is open,
    so !important is needed). Only while server or channel settings are open. */
-.layer_Fd0FEH:has(> div > .standardSidebarView_jnk11m) {
+/* (server settings wraps the panel in an unnamed div inside its layer; channel settings puts it directly in the layer) */
+.layer_Fd0FEH:has(> .standardSidebarView_jnk11m, > div > .standardSidebarView_jnk11m) {
     background: hsl(0, 0%, 0%, 0.6); /* dims the app behind, like user settings */
     transform: none !important; /* skip discord's scale animation (redrawing a full-window layer each frame), keep the fade */
     z-index: 1050; /* above everything in the app behind it, including midnight's title bar buttons (1000) */
@@ -2674,7 +2679,7 @@ body {
 .appAsidePanelWrapper_YRXZu0 > div > .layerContainer_VVADeK {
     z-index: 1100;
 }
-.layers_Fd0FEH:has(> .layer_Fd0FEH > div > .standardSidebarView_jnk11m) > .baseLayer_Fd0FEH {
+.layers_Fd0FEH:has(> .layer_Fd0FEH > .standardSidebarView_jnk11m, > .layer_Fd0FEH > div > .standardSidebarView_jnk11m) > .baseLayer_Fd0FEH {
     opacity: 1 !important;
     transform: none !important;
     visibility: visible !important;
