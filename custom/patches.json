@@ -223,6 +223,12 @@
       "selector": ".bg_Fd0FEH /* main background */ {",
       "from": "var(--bg-3)",
       "to": "var(--bg-app)"
+    },
+    {
+      "why": "--input-icon-default was a lime placeholder, so input icons (e.g. the DM list search icon) showed green; use the theme's subtle icon grey",
+      "type": "var",
+      "name": "input-icon-default",
+      "value": "var(--icon-subtle)"
     }
   ]
 }
