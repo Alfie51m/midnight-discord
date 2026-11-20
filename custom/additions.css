@@ -286,3 +286,22 @@ body {
 .scroller_0fgkqL .navBar_jHfUxk :is(.upperContainer_ybUK7Z, .children_ybUK7Z, .navBarContent_jHfUxk) {
     height: 100%;
 }
+
+/* ===== CUSTOMISED: back/forward arrows in a pill above the server list =====
+   With the buttons moved into the channel header (--top-bar-button-position: titlebar), midnight hides Discord's
+   back/forward arrows. They still sit where Discord puts them: in the top bar's leading box, directly above the
+   server list and exactly its width, outside the window's drag area. Show them there, in a small panel-style pill. */
+.bar_3zSH5d .leading_3zSH5d {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    background-color: var(--bg-4);
+    border: var(--border-thickness) solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+}
+.bar_3zSH5d .leading_3zSH5d .backForwardButtons_nS9Yqn {
+    opacity: 1;
+    pointer-events: auto;
+}
+
