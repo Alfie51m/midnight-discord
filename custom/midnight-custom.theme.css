@@ -112,6 +112,11 @@ body {
 
 .sidebarList_pog62O /* channel list */ {
     margin-bottom: calc(var(--custom-app-panels-height, 0) + var(--gap));
+    border-top: var(--border-thickness) solid var(--border-subtle) !important;
+
+    &:hover {
+        border-color: var(--border-hover) !important;
+    }
 }
 .container_H5ozaj /* channel list inner */ {
     padding-bottom: 0;
@@ -254,22 +259,17 @@ body {
     border: none;
 }
 
-.aside_HbUF2J /* dm user panel wrapper */ {
+/* DM user profile sidebar */
+.aside_HbUF2J {
     padding: 0;
     background: none;
-}
 
-.content_z_gUBg > aside > .outer_P1YEjQ /* dm user panel */ {
-    margin-left: var(--gap);
-    overflow: hidden;
-    /* min-width: 340px; */
-    background-position: center calc(-1 * var(--border-thickness));
-    background-size: 100% calc(100% + 2 * var(--border-thickness));
-}
-
-.content_z_gUBg > aside > .outer_P1YEjQ /* dm user panel */ {
-    overflow: visible;
-    margin-right: 0;
+    .user-profile-sidebar {
+        margin-left: var(--gap);
+        background-position: center calc(-1 * var(--border-thickness));
+        background-size: 100% calc(100% + 2 * var(--border-thickness));
+        box-shadow: none;
+    }
 }
 
 .searchResultsWrap_QHVbp3 /* search results */ {
@@ -493,15 +493,14 @@ body {
     border-radius: var(--radius-md);
 }
 
-.outer_P1YEjQ /* profile outer */,
-.contentWrapper_58b0l2  /* gif panel */ {
+.contentWrapper_58b0l2  /* gif panel */,
+.outer_P1YEjQ /* profile/sidebar panel outer */,
+.inner_P1YEjQ /* profile/sidebar panel inner */ {
     border-radius: var(--radius-lg) !important;
 }
-.inner_P1YEjQ /* profile inner */ {
-    border-radius: calc(var(--radius-lg) - 4px);
-}
 
-.outer_P1YEjQ /* profile outer */ {
+/* profile/sidebar panel outer */
+.outer_P1YEjQ {
     border: 1px solid var(--border-subtle);
     background-position: center calc(-1 * var(--border-thickness));
     background-size: 100% calc(100% + 2 * var(--border-thickness));
@@ -1293,8 +1292,8 @@ body {
         --switch-border-hover: var(--border-hover);
         --switch-border-selected-default: var(--border-light);
         --switch-border-selected-hover: var(--border-hover);
-        --switch-thumb-background-default: rgb(255, 255, 255);
-        --switch-thumb-background-selected-default: rgb(255, 255, 255);
+        --switch-thumb-background-default: var(--text-3);
+        --switch-thumb-background-selected-default: var(--text-0);
         --switch-thumb-icon-active: blue;
         --switch-thumb-icon-default: magenta;
         --text-brand: var(--accent-1);
@@ -1358,10 +1357,9 @@ body {
         --white-500: var(--text-1);
     }
 
-    /* User profile sidebar */
-    .user-profile-sidebar .inner_P1YEjQ {
-        --user-profile-overlay-background: var(--bg-3);
-        --profile-gradient-secondary-color: var(--bg-4);
+    /* DM user profile sidebar */
+    .user-profile-sidebar:not(.custom-user-profile-theme) {
+        background: var(--bg-4) !important;
     }
 
     /* Discord video player */
@@ -1514,9 +1512,11 @@ body {
         color: var(--text-on-accent); /* CUSTOMISED */
     }
 
+    /* Vencord/Equicord switches */
     .vc-switch-container {
         background-color: var(--bg-1) !important;
         transition: background-color 0.2s ease;
+        border-radius: var(--radius-lg);
     }
     .vc-switch-container.vc-switch-checked {
         background-color: var(--accent-2) !important;
@@ -1534,6 +1534,12 @@ body {
     }
     .vc-switch-container.vc-switch-checked .vc-switch-slider rect[fill='white'] {
         fill: var(--text-on-accent) !important; /* CUSTOMISED */
+    }
+    .vc-plugins-restart-button {
+        background-color: var(--text-status-idle) !important;
+    }
+    .vc-notice-text {
+        color: var(--text-2) !important;
     }
 
     .refreshIcon_jqZBm0 /* settings radiobutton center */ {
@@ -1593,7 +1599,9 @@ body {
         .emptyChannelIcon_w6h4R2 path[fill='var(--white)'] /* channel start icon */ {
         fill: var(--text-3);
     }
-    .grabber_OnqacX /* slider grabber (vc volume, settings, spotify plugin) */ {
+    /* slider grabber (vc volume, settings, spotify plugin) */
+    .grabber_p3RiOL,
+    .grabber_OnqacX {
         background-color: var(--text-3);
     }
     .badge_4guu7- /* new text badge (right click on person in vc) */ {
@@ -1968,15 +1976,22 @@ body {
     .bar_3zSH5d .backForwardButtons_nS9Yqn /* page seek arrows */,
     .title_3zSH5d /* top bar title */,
     .trailing_3zSH5d /* top bar buttons */ {
-        display: none;
+        opacity: 0;
+        pointer-events: none;
     }
 }
 
 @container body style(--top-bar-button-position: titlebar) {
+    /* Hide top bar elements */
+    .bar_3zSH5d .backForwardButtons_nS9Yqn {
+        opacity: 0;
+        pointer-events: none;
+    }
     .title_3zSH5d,
     .trailing_3zSH5d > a[href='https://support.discord.com'] {
         display: none;
     }
+
     .trailing_3zSH5d {
         position: absolute;
         top: calc(var(--top-bar-height) + 8px + var(--border-thickness));
@@ -1992,6 +2007,7 @@ body {
     .popout_9Aa-7R .trailing_3zSH5d {
         z-index: 1100;
     }
+    
     /* Fix window controls overlapping certain modals */
     #app-mount,
     .modal__F9ieB {
@@ -2120,11 +2136,6 @@ body {
         }
     }
 
-    /* Hide page seek arrows */
-    .bar_3zSH5d .backForwardButtons_nS9Yqn {
-        display: none;
-    }
-
     /* Hide trailing in VC wrapper */
     .base_pog62O,
     .popout_9Aa-7R {
@@ -2163,7 +2174,8 @@ body {
     }
     /* Hide page seek arrows */
     .bar_3zSH5d .backForwardButtons_nS9Yqn {
-        display: none;
+        opacity: 0;
+        pointer-events: none;
     }
 }
 
@@ -2198,37 +2210,52 @@ body {
     }
 
     .popover_DpHsW6.popover_DpHsW6 /* message hover quick action bar */,
-        .tooltip_3_v8qp /* tooltips */ {
+    .tooltip_3_v8qp /* tooltip class 1 */,
+    .contentWrapper_58b0l2 /* emoji/gif panel */,
+    .root__KoJTP /* modals like invite */,
+    .outer_P1YEjQ.user-profile-popout:not(.custom-theme-background) /* small profile popup */,
+    .autocomplete_rg6La1 /* autocomplete */,
+    .container_cbVzxY /* search suggestions */,
+    .messagesPopoutWrap_6bgemo /* inbox */,
+    .popout_j5xNzb /* channel hover popout */,
+    .bar_t1P8Sn /* channel list new unreads bar */,
+    .orbWalletContainer_hSuDqh /* orb wallet container */ {
         background: var(--bg-floating);
-    }
-    .menu_M3qk4j /* context menus */,
-        .contentWrapper_58b0l2 /* emoji/gif panel */,
-        .root__KoJTP /* modals like invite */,
-        .outer_P1YEjQ.user-profile-popout:not(.custom-theme-background) /* small profile popup */,
-        .autocomplete_rg6La1 /* autocomplete */,
-        .container_cbVzxY /* search suggestions */,
-        .messagesPopoutWrap_6bgemo /* inbox */,
-        .popout_j5xNzb /* channel hover popout */,
-        .bar_t1P8Sn /* channel list new unreads bar */ {
-        background: var(--bg-floating);
-    }
-
-    .menu_M3qk4j::before {
-        content: '';
-        position: absolute;
         backdrop-filter: var(--panel-backdrop-filter);
-        border-radius: 8px;
-        background: transparent;
-        width: 100%;
-        height: 100%;
     }
 
+    /* Tooltip class 2 */
+    .tooltipLayer_ZDdyhE > div {
+        border-radius: var(--radius-sm);
+        backdrop-filter: var(--panel-backdrop-filter);
+
+        .tooltip_ZDdyhE {
+            background: var(--bg-floating);
+        }
+    }
+
+    /* Context menus */
+    .menu_M3qk4j {
+        background: var(--bg-floating);
+
+        /* Fix menu positioning by applying pseudo element */
+        &::before {
+            --size: calc(100% - 1px);
+            
+            content: '';
+            position: absolute;
+            width: var(--size);
+            height: var(--size);
+            border-radius: inherit;
+            backdrop-filter: var(--panel-backdrop-filter);
+            z-index: -1;
+        }
+    }
     .submenuPaddingContainer_M3qk4j > .menu_M3qk4j::before {
-        width: calc(100% - 16px);
+        width: calc(var(--size) - 16px);
     }
-
     .submenuPaddingContainer_nitlyF > .menu_M3qk4j::before {
-        width: calc(100% - 24px);
+        width: calc(var(--size) - 24px);
     }
 }
 
@@ -2742,8 +2769,10 @@ body {
     z-index: 1050; /* above everything in the app behind it, including midnight's title bar buttons (1000) */
 }
 /* discord's popups (confirmations, create invite, sticker upload, menus, tooltips) live in top-level layer containers
-   beside the app; lift them above the settings layer (1050) so dialogs opened from server settings show in front */
-.appAsidePanelWrapper_YRXZu0 > div > .layerContainer_VVADeK {
+   beside the app; lift them above the settings layer (1050) so dialogs opened from server settings show in front.
+   Discord has moved them inside .contents_qZv3Qq (midnight followed in Nov 2026); match both paths, but not the chat's
+   own layer container, which midnight keeps below its title bar buttons */
+:is(.appAsidePanelWrapper_YRXZu0 > div, .appAsidePanelWrapper_YRXZu0 > div > .contents_qZv3Qq > div) > .layerContainer_VVADeK {
     z-index: 1100;
 }
 .layers_Fd0FEH:has(> .layer_Fd0FEH > .standardSidebarView_jnk11m, > .layer_Fd0FEH > div > .standardSidebarView_jnk11m) > .baseLayer_Fd0FEH {
