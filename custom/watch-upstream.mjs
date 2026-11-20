@@ -41,6 +41,7 @@ if (state.commit === latest) {
 const classRe = /[A-Za-z][\w-]*_[A-Za-z0-9-]{6}(?![\w-])/g;
 const watched = new Set([
     ...readFileSync(join(root, 'custom/additions.css'), 'utf8').match(classRe) ?? [],
+    ...(existsSync(join(root, 'custom/additions-light.css')) ? readFileSync(join(root, 'custom/additions-light.css'), 'utf8').match(classRe) ?? [] : []),
     ...readFileSync(join(root, 'custom/patches.json'), 'utf8').match(classRe) ?? [],
 ]);
 

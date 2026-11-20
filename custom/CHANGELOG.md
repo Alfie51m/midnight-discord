@@ -2,6 +2,14 @@
 
 General rule: wherever stock Discord dark mode uses white text or icons on its own colours, so does this theme. On the theme's blue (accent) backgrounds, text and icons are dark (`--text-on-accent`). Colours that Discord uses for meaning (status, red and green buttons, warnings) are Discord's own.
 
+## Light theme
+
+A light version is built alongside the dark one, as `midnight-custom-light.theme.css`. It's meant for Discord's light mode: Vencord's `@light` online theme prefix loads it automatically when Discord is set to light mode.
+
+- **Palette (`settings-light.css`):** white panels on a light grey background, Discord's light-mode greys for text, deeper blues with white text on them, and dark-tinted hover and selection. It overrides only these values from `settings.css`.
+- **Light-only rules (`additions-light.css`):** light text on profiles with a dark custom theme, and dark user panel icons over a nameplate.
+- **Everything else is shared:** patches, `settings.css` and `additions.css` apply to both themes.
+
 ## Settings (`settings.css`)
 
 | Area | Change |

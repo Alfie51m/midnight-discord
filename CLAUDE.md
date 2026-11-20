@@ -1,6 +1,6 @@
 # midnight (custom)
 
-A personal build of refact0r's [midnight](https://github.com/refact0r/midnight-discord) Discord theme. The theme is one generated file, `custom/midnight-custom.theme.css`, loaded by the owner's Vencord as an online theme from this repository's raw GitHub URL. Changes go live on the next Discord start after the file is committed to `master`.
+A personal build of refact0r's [midnight](https://github.com/refact0r/midnight-discord) Discord theme. It's two generated files, `custom/midnight-custom.theme.css` (dark) and `custom/midnight-custom-light.theme.css` (light), loaded by the owner's Vencord as `@dark` and `@light` online themes from this repository's raw GitHub URLs, so they follow Discord's own Appearance setting. Changes go live on the next Discord start after the files are committed to `master`.
 
 ## How the build works
 
@@ -8,6 +8,7 @@ A personal build of refact0r's [midnight](https://github.com/refact0r/midnight-d
 - `custom/settings.css`: values for midnight's settings variables, replaced by name. A new variable needs an `after: --name.` note in its comment.
 - `custom/patches.json`: edits to the author's bundle. `var` sets a variable everywhere, `rule` replaces text inside the one rule with that exact selector line, `replace` and `remove-line` match exact text. Each patch must match, or the build fails.
 - `custom/additions.css`: our own rules, appended last.
+- `custom/settings-light.css` and `custom/additions-light.css`: the light theme's palette and light-only rules, applied after the shared files. Everything else is shared; a change for one theme usually needs checking in both.
 - `.github/workflows/customBuild.yml` runs daily: it downloads midnight into `.midnight/`, renames classes in it and in `custom/` with the pinned `refact0r/class-update`, builds, and commits. On pull requests it only builds. It also adds an empty commit if the repository has been quiet for 50 days, so GitHub doesn't pause the schedule.
 - `custom/watch-upstream.mjs` diffs the author's `src/` between the commit in `custom/upstream.json` and his latest, ignoring pure class renames, and the workflow opens an issue when a changed line uses a class from `additions.css` or `patches.json`.
 - `.github/dependabot.yml` opens pull requests for new action releases.
@@ -15,7 +16,7 @@ A personal build of refact0r's [midnight](https://github.com/refact0r/midnight-d
 
 ## Rules
 
-- Never edit `custom/midnight-custom.theme.css`; edit the source files and run `node custom/build.mjs`.
+- Never edit the generated theme files; edit the source files and run `node custom/build.mjs`, which builds both.
 - Check a refactor didn't change behaviour by comparing old and new output rule by rule (parse both with `css-tree` and diff the declarations), not by eye.
 - Work on a branch and open a pull request into `master`; the owner reviews and merges.
 - Comment each rule with what it does and why, especially workarounds; the comments are the documentation.
