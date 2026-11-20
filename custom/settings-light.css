@@ -1,0 +1,29 @@
+/* Light theme palette, applied on top of settings.css for midnight-custom-light.theme.css only.
+   Vencord loads it when Discord itself is in light mode (an "@light" online theme line), so Discord's own
+   light-mode icons and fallbacks match. A light take on the same Onyx-style neutral look: white panels on a
+   light grey background, with Discord's light-mode greys for text. Format as in settings.css. */
+
+--text-1: hsl(240, 8%, 3%); /* strongest text: headings, names (Discord light #060607). was: hsl(220, 13%, 95%) */
+--text-2: hsl(228, 6%, 16%); /* was: hsl(225, 5%, 88%) */
+--text-3: hsl(228, 6%, 21%); /* normal message text (Discord light #313338). was: hsl(225, 4%, 83%) */
+--text-4: hsl(228, 5%, 38%); /* channels and icons (Discord light #5c5e66). was: hsl(235, 4%, 50%) */
+--text-5: hsl(222, 5%, 53%); /* muted channels and timestamps (Discord light #80848e). was: hsl(235, 4%, 40%) */
+--text-on-accent: hsl(0, 0%, 100%); /* white on the deeper light-theme blues, like stock Discord. was: var(--bg-4) */
+
+--bg-1: hsl(220, 9%, 86%); /* was: hsla(240, 7%, 15%, 1) */
+--bg-2: hsl(220, 11%, 91%); /* was: hsla(240, 7%, 11%, 1) */
+--bg-3: hsl(220, 13%, 95%); /* message box and secondary surfaces (Discord light #f2f3f5). was: hsla(240, 9%, 7%, 1) */
+--bg-4: hsl(0, 0%, 100%); /* panels. was: hsla(0, 0%, 0%, 1) */
+--bg-app: hsl(216, 10%, 89%); /* background behind the panels. was: hsl(240, 8%, 4%) */
+
+--hover: hsla(220, 8%, 25%, 0.08); /* dark tint instead of light, so it shows on white. was: hsla(220, 5%, 50%, 0.15) */
+--active: hsla(220, 8%, 25%, 0.14); /* was: hsla(220, 5%, 50%, 0.2) */
+--active-2: hsla(220, 8%, 25%, 0.2); /* was: hsla(220, 5%, 50%, 0.3) */
+--message-hover: hsla(220, 8%, 25%, 0.05); /* was: hsla(240, 5%, 60%, 0.08) */
+--button-border: hsl(220, 10%, 20%, 0.12); /* was: hsl(220, 0%, 100%, 0.1) */
+
+--blue-1: oklch(60% 0.12 225); /* deeper blues stay readable on white. was: oklch(75% 0.1 215) */
+--blue-2: oklch(52% 0.12 225); /* links, mentions. was: oklch(70% 0.1 215) */
+--blue-3: oklch(48% 0.12 225); /* buttons. was: oklch(65% 0.1 215) */
+--blue-4: oklch(44% 0.12 225); /* was: oklch(60% 0.1 215) */
+--blue-5: oklch(40% 0.12 225); /* was: oklch(55% 0.1 215) */

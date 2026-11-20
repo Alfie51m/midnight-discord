@@ -1,0 +1,14 @@
+/* Light theme only: extra rules, added after additions.css in midnight-custom-light.theme.css. */
+
+/* profiles with their own colour theme: midnight sets Discord's --white to --text-1 there, which is near-black in
+   the light theme. Profiles whose own theme is dark still need light text. */
+.custom-user-profile-theme.theme-dark {
+    --white: hsl(220, 13%, 95%);
+    --white-500: hsl(220, 13%, 95%);
+}
+
+/* user panel icons over a nameplate: the shared rule makes them near-white for dark nameplates, but in the light theme
+   the nameplate is light, so use the normal dark icon colour */
+.container_g6VwXp:has(.container_AFi54G) .button_Y-8oZW svg:not([class]) {
+    color: var(--text-3);
+}

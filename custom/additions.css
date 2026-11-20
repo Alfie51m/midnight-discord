@@ -36,7 +36,7 @@ body {
    Over a nameplate, Discord's own mute/deafen/settings icons are near-white (--text-1), but Vencord's icon
    only inherits the button colour and stays dim. Discord's icons have no class either, so this rule sets them all to the same colour. The red "disabled" slash sets its own colour and is unaffected. */
 .container_g6VwXp:has(.container_AFi54G) .button_Y-8oZW svg:not([class]) {
-    color: var(--text-1); /* not var(--white): in this part of Discord the theme maps --white to black */
+    color: hsl(220, 13%, 95%); /* near-white like Discord's own icons here, in both themes (they sit on the nameplate image). Not var(--white): the theme maps it to black here */
 }
 
 /* ===== CUSTOMISED: square top corners on the nameplate when something sits above it =====

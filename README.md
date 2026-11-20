@@ -16,7 +16,14 @@ https://raw.githubusercontent.com/Alfie51m/midnight-discord/master/custom/midnig
 
 Vencord loads online themes when Discord starts, or when you press Ctrl+R. Turn off any other copy of midnight so it doesn't load twice.
 
-**BetterDiscord or offline use:** download [`custom/midnight-custom.theme.css`](./custom/midnight-custom.theme.css) and put it in your themes folder. A downloaded copy doesn't update itself, so download it again when you want the latest version.
+**Light mode too:** there's also a light version. Add both lines instead, and Vencord switches between them with Discord's own Appearance setting (or with Windows, if Discord follows your computer's theme):
+
+```
+@dark https://raw.githubusercontent.com/Alfie51m/midnight-discord/master/custom/midnight-custom.theme.css
+@light https://raw.githubusercontent.com/Alfie51m/midnight-discord/master/custom/midnight-custom-light.theme.css
+```
+
+**BetterDiscord or offline use:** download [`custom/midnight-custom.theme.css`](./custom/midnight-custom.theme.css) (or the light [`midnight-custom-light.theme.css`](./custom/midnight-custom-light.theme.css)) and put it in your themes folder. A downloaded copy doesn't update itself, so download it again when you want the latest version.
 
 ## What's changed
 
@@ -27,6 +34,7 @@ Compared with stock midnight:
 - **Discord's colours for meaning:** status colours (online, idle, do not disturb) and red and green buttons. White text and icons wherever stock Discord uses them, and dark text on the theme's blue.
 - **Solid highlights:** mentions and replies get solid backgrounds instead of fading out to the right.
 - **Server settings as a floating popup** like user settings, with a pinned server name, pages that use the full width, and click outside to close.
+- **A light version** for Discord's light mode, with the same changes and a light palette.
 - **Plugin and detail fixes:** an open Better Folders folder joins onto the server list, the Game Activity Toggle icon matches the other panel icons, nameplates have square corners under the activity panel, and connection logos and quest labels are readable.
 
 The full list, with every changed setting, is in [`custom/CHANGELOG.md`](./custom/CHANGELOG.md).
@@ -53,12 +61,14 @@ To rebuild straight away, open **Actions → Build custom theme → Run workflow
 
 ## Making changes
 
-Edit the files in `custom/`, never `midnight-custom.theme.css` itself. Pushing a change to `custom/` rebuilds the theme.
+Edit the files in `custom/`, never the generated `midnight-custom.theme.css` or `midnight-custom-light.theme.css`. Pushing a change to `custom/` rebuilds the theme.
 
 | File | What it holds |
 | --- | --- |
-| [`settings.css`](./custom/settings.css) | Your values for midnight's settings: colours, sizes and on/off options, one variable per line. |
-| [`additions.css`](./custom/additions.css) | Your own CSS rules, added after the theme. |
+| [`settings.css`](./custom/settings.css) | Your values for midnight's settings: colours, sizes and on/off options, one variable per line. Used by both themes. |
+| [`settings-light.css`](./custom/settings-light.css) | The light theme's palette, applied on top of `settings.css`. |
+| [`additions.css`](./custom/additions.css) | Your own CSS rules, added after the theme. Used by both themes. |
+| [`additions-light.css`](./custom/additions-light.css) | Extra rules for the light theme only. |
 | [`patches.json`](./custom/patches.json) | Small edits to the author's code, each with a note on why. |
 | [`build.mjs`](./custom/build.mjs) | The build script that combines the author's theme with the three files above. |
 | [`watch-upstream.mjs`](./custom/watch-upstream.mjs) | Flags the author's changes that touch classes the custom files use. It records his last seen version in `upstream.json`. |

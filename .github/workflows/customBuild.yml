@@ -1,6 +1,6 @@
 name: Build custom theme
 
-# Rebuilds custom/midnight-custom.theme.css from the author's latest theme (downloaded from
+# Rebuilds custom/midnight-custom.theme.css and custom/midnight-custom-light.theme.css from the author's latest theme (downloaded from
 # refact0r/midnight-discord) with the changes in custom/ applied.
 # Runs every day (after the author's own class update at 00:00 UTC), whenever custom/ changes,
 # and on demand from the Actions tab ("Run workflow").
@@ -14,6 +14,7 @@ on:
     paths:
       - "custom/**"
       - "!custom/midnight-custom.theme.css"
+      - "!custom/midnight-custom-light.theme.css"
       - ".github/workflows/customBuild.yml"
   pull_request:
     branches: [master]
