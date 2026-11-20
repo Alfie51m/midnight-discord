@@ -2806,9 +2806,18 @@ body {
 
 /* ===== CUSTOMISED: back/forward arrows in a pill above the server list =====
    With the buttons moved into the channel header (--top-bar-button-position: titlebar), midnight hides Discord's
-   back/forward arrows. They still sit where Discord puts them: in the top bar's leading box, directly above the
-   server list and exactly its width, outside the window's drag area. Show them there, in a small panel-style pill. */
+   back/forward arrows and shrinks the top bar to a thin strip. Show them in a small panel-style pill in the
+   top-left corner, where Discord puts them, and move the server list (and an open Better Folders column) down
+   to make room. The pill stays in the top bar's leading box, which is outside the window's drag area. */
+body {
+    --back-forward-pill-height: 32px;
+}
 .bar_3zSH5d .leading_3zSH5d {
+    position: absolute;
+    top: var(--gap);
+    left: var(--gap);
+    width: var(--custom-guild-list-width);
+    height: var(--back-forward-pill-height);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2820,4 +2829,7 @@ body {
 .bar_3zSH5d .leading_3zSH5d .backForwardButtons_nS9Yqn {
     opacity: 1;
     pointer-events: auto;
+}
+.base_pog62O .guilds_pog62O {
+    margin-top: calc(var(--back-forward-pill-height) + var(--gap));
 }
