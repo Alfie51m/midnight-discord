@@ -34,6 +34,7 @@ A light version is built alongside the dark one, as `midnight-custom-light.theme
 - Server settings menu hover and selected highlights use `--hover` and `--active`, so they show against the sidebar.
 - `--input-icon-default` was an unmapped placeholder (lime, e.g. the DM list search icon); now `--icon-subtle`.
 - `--card-secondary-bg` was an unmapped placeholder (pure blue, e.g. expanded audit log entries); now `--bg-2`.
+- Better Folders column: midnight's forced `width: 100% !important` is removed, so the plugin can animate the column sliding in and out.
 - `--text-overlay-light` is light, so text over images and overlays (quest promoter names, Nitro tags) is readable.
 - Badge, checkbox, primary and connect button, and info and warning notice text use `--text-on-accent`, as do the forum OP tag, add friend button, VC new badge, radio centres, screen picker and text selection.
 
@@ -41,12 +42,12 @@ A light version is built alongside the dark one, as `midnight-custom-light.theme
 
 | Rule | What it does |
 | --- | --- |
-| Better Folders merge | An open folder joins onto the server list as one panel with a slimmer column (`--bf-column-padding`, `--bf-scrollbar-space`). |
+| Better Folders merge | An open folder joins onto the server list as one panel, the column as wide as the server list but with slimmer padding (`--bf-column-padding`). The plugin's "Animate opening the folder sidebar" setting works again: the column slides in and out (midnight's forced width, which blocked it, is removed by a patch). |
 | Game Activity Toggle icon | Over a nameplate, all user panel icons are the same near-white. |
 | Square nameplate top | The nameplate's top corners are square when the game activity or voice panel sits above the user row. |
 | Floating server settings | Server and channel settings float like the user settings popup: 66px/84px insets with the app dimmed behind, a 316px black sidebar with a divider, centred content (forms up to 900px, list pages like roles and invites up to 1200px), a plain X close button in the top-right corner, and clicking outside closes it. Discord's popups (confirmations, invites, stickers, menus) are lifted to 1100 so they open in front of it. Channel settings shows just the channel name at the top, without its category. |
 | Nitro page | Rounded, bordered panel like the others, and a solid black top bar with a divider like the shop's, as tall as the channel header (midnight's own selectors for this page are out of date). |
-| Back/forward pill | Discord's back and forward arrows, hidden by midnight in the title bar layout, shown in a small panel-style pill in the top-left corner, where Discord places them; the server list moves down to make room (`--back-forward-pill-height`). It widens to match when a Better Folders folder is open. |
+| Back/forward pill | Discord's back and forward arrows, hidden by midnight in the title bar layout, shown in a small panel-style pill in the top-left corner, where Discord places them; the server list moves down to make room (`--back-forward-pill-height`). It widens to match when a Better Folders folder is open, over the same 200ms as the folder slide. |
 | Dark text on the theme's blue | Blue-backed elements that use Discord's `--white` (unread badges, mention pills, unread bars, the NEW tag, bot tags) get dark text. |
 
 ## If something breaks

@@ -97,9 +97,6 @@ body {
     margin-bottom: calc(var(--custom-app-panels-height, 0) + var(--gap));
     margin-right: var(--gap);
 }
-.guilds_pog62O + div:not(.sidebarList_pog62O) /* betterfolders */ {
-    width: 100% !important;
-}
 .scroller_5dqHTG /* server list inner scroller */ {
     padding-top: var(--custom-guild-list-padding) !important;
     padding-bottom: var(--custom-guild-list-padding);
@@ -2522,9 +2519,10 @@ body {
    no gap or inner border where they meet, and slimmer side padding on the folder column. */
 body {
     --bf-column-padding: calc(var(--custom-guild-list-padding) / 2); /* side padding of the folder column */
-    --bf-scrollbar-space: 10px; /* room for the folder column's hidden scrollbar; raise if the right side is still cut off */
-    /* the folder column's full width; also widens the back/forward pill while a folder is open */
-    --bf-column-width: calc(var(--guildbar-avatar-size) + var(--bf-column-padding) * 2 + var(--border-thickness) + var(--bf-scrollbar-space));
+    /* the folder column's full width: the same as the main server list, because the plugin's slide animation
+       opens the column to exactly that width. The slimmer padding leaves the spare room for its hidden scrollbar.
+       Also widens the back/forward pill while a folder is open. Worked out here, with the normal server list values. */
+    --bf-column-width: var(--custom-guild-list-width);
 }
 /* main server list: drop its right edge and gap while a folder is open */
 .guilds_pog62O:has(+ .vc-betterFolders-sidebar) {
@@ -2533,17 +2531,26 @@ body {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 }
-/* folder column: continue the panel, with no left edge */
+/* folder column: continue the panel, with no left edge. Fixed width and no gap of its own (the wrapper below
+   carries the gap), so while the wrapper slides open the column is revealed rather than squashed */
 .vc-betterFolders-sidebar .guilds_pog62O {
+    width: var(--bf-column-width);
+    margin-right: 0;
     border-left-width: 0;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 }
-/* slimmer folder column: give it its own, smaller copy of the server list spacing so everything inside sizes to match */
+/* folder column wrapper. Its width is left to the plugin: with "Animate opening the folder sidebar" on, it animates
+   the inline width from 0 to the server list's width and back, so the column slides in and out; with it off the
+   wrapper just fits the column. Hidden overflow clips the column during the slide, and the gap to the channel
+   list sits here so it doesn't get clipped.
+   Slimmer folder column: give it its own, smaller copy of the server list padding so everything inside sizes to match. */
 #app-mount .vc-betterFolders-sidebar {
     --custom-guild-list-padding: var(--bf-column-padding);
     --custom-guild-list-width: var(--bf-column-width);
-    width: auto !important;
+    flex-shrink: 0;
+    overflow: hidden;
+    margin-right: var(--gap);
 }
 /* keep the top padding the same as the main server list so the icons line up */
 .vc-betterFolders-sidebar .scroller_5dqHTG {
@@ -2829,6 +2836,7 @@ body {
     background-color: var(--bg-4);
     border: var(--border-thickness) solid var(--border-subtle);
     border-radius: var(--radius-lg);
+    transition: width 200ms linear; /* follows the Better Folders slide (200ms, linear) when a folder opens or closes */
 }
 .bar_3zSH5d .leading_3zSH5d .backForwardButtons_nS9Yqn {
     opacity: 1;
