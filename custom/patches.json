@@ -229,12 +229,6 @@
       "type": "var",
       "name": "input-icon-default",
       "value": "var(--icon-subtle)"
-    },
-    {
-      "why": "midnight forces the Better Folders column's width with !important, which blocks the plugin's slide in/out animation (it animates the inline width); additions.css sizes the column instead",
-      "type": "replace",
-      "find": ".guilds_pog62O + div:not(.sidebarList_pog62O) /* betterfolders */ {\n    width: 100% !important;\n}\n",
-      "replace": ""
     }
   ]
 }

@@ -97,6 +97,9 @@ body {
     margin-bottom: calc(var(--custom-app-panels-height, 0) + var(--gap));
     margin-right: var(--gap);
 }
+.guilds_pog62O + div:not(.sidebarList_pog62O) /* betterfolders */ {
+    width: 100% !important;
+}
 .scroller_5dqHTG /* server list inner scroller */ {
     padding-top: var(--custom-guild-list-padding) !important;
     padding-bottom: var(--custom-guild-list-padding);
@@ -2523,6 +2526,9 @@ body {
        opens the column to exactly that width. The slimmer padding leaves the spare room for its hidden scrollbar.
        Also widens the back/forward pill while a folder is open. Worked out here, with the normal server list values. */
     --bf-column-width: var(--custom-guild-list-width);
+    /* the folder column's slide, shared with the back/forward pill so both move together.
+       Keep the duration at 200ms or less: that's how long the plugin keeps a closing column on screen */
+    --bf-slide: 200ms ease-in-out;
 }
 /* main server list: drop its right edge and gap while a folder is open */
 .guilds_pog62O:has(+ .vc-betterFolders-sidebar) {
@@ -2540,10 +2546,10 @@ body {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 }
-/* folder column wrapper. Its width is left to the plugin: with "Animate opening the folder sidebar" on, it animates
-   the inline width from 0 to the server list's width and back, so the column slides in and out; with it off the
-   wrapper just fits the column. Hidden overflow clips the column during the slide, and the gap to the channel
-   list sits here so it doesn't get clipped.
+/* folder column wrapper. The theme animates its width itself rather than following the plugin's inline width
+   (which can't be eased or matched to the pill): it slides open from 0 when it appears (@starting-style below), and
+   closed to 0 while the plugin keeps it on screen to animate closing (the rule after). Hidden overflow clips the
+   column during the slide, and the gap to the channel list sits here so it doesn't get clipped.
    Slimmer folder column: give it its own, smaller copy of the server list padding so everything inside sizes to match. */
 #app-mount .vc-betterFolders-sidebar {
     --custom-guild-list-padding: var(--bf-column-padding);
@@ -2551,6 +2557,19 @@ body {
     flex-shrink: 0;
     overflow: hidden;
     margin-right: var(--gap);
+    width: var(--bf-column-width) !important; /* over the plugin's inline width, and midnight's width: 100% !important */
+    transition: width var(--bf-slide);
+}
+@starting-style {
+    #app-mount .vc-betterFolders-sidebar {
+        width: 0 !important;
+    }
+}
+/* closing: the plugin empties the column at once (every server is still there, but inside a display: none wrapper)
+   and, with its "Animate opening the folder sidebar" setting on, keeps it for 200ms. Spot that and slide it shut.
+   With the setting off the column is removed at once, so there's nothing to animate */
+#app-mount .vc-betterFolders-sidebar:not(:has(:is(.listItem_rwEpIL, .folderGroup_RTMSuZ):not([style*="display: none"] *))) {
+    width: 0 !important;
 }
 /* keep the top padding the same as the main server list so the icons line up */
 .vc-betterFolders-sidebar .scroller_5dqHTG {
@@ -2836,7 +2855,6 @@ body {
     background-color: var(--bg-4);
     border: var(--border-thickness) solid var(--border-subtle);
     border-radius: var(--radius-lg);
-    transition: width 200ms linear; /* follows the Better Folders slide (200ms, linear) when a folder opens or closes */
 }
 .bar_3zSH5d .leading_3zSH5d .backForwardButtons_nS9Yqn {
     opacity: 1;
@@ -2845,7 +2863,13 @@ body {
 .base_pog62O .guilds_pog62O {
     margin-top: calc(var(--back-forward-pill-height) + var(--gap));
 }
-/* while a Better Folders folder is open, its column joins the server list into one wider panel: widen the pill to match */
+/* while a Better Folders folder is open, its column joins the server list into one wider panel: widen the pill to
+   match, in the same animation as the column. The narrowing animates only while the column is sliding shut (the second
+   rule); when the plugin removes the column at once, the pill snaps back with it */
 .base_pog62O:has(.vc-betterFolders-sidebar) > .bar_3zSH5d .leading_3zSH5d {
     width: calc(var(--custom-guild-list-width) + var(--bf-column-width));
+    transition: width var(--bf-slide);
+}
+.base_pog62O:has(.vc-betterFolders-sidebar:not(:has(:is(.listItem_rwEpIL, .folderGroup_RTMSuZ):not([style*="display: none"] *)))) > .bar_3zSH5d .leading_3zSH5d {
+    width: var(--custom-guild-list-width);
 }
