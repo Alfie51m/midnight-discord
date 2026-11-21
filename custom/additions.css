@@ -6,6 +6,8 @@
 body {
     --bf-column-padding: calc(var(--custom-guild-list-padding) / 2); /* side padding of the folder column */
     --bf-scrollbar-space: 10px; /* room for the folder column's hidden scrollbar; raise if the right side is still cut off */
+    /* the folder column's full width; also widens the back/forward pill while a folder is open */
+    --bf-column-width: calc(var(--guildbar-avatar-size) + var(--bf-column-padding) * 2 + var(--border-thickness) + var(--bf-scrollbar-space));
 }
 /* main server list: drop its right edge and gap while a folder is open */
 .guilds_pog62O:has(+ .vc-betterFolders-sidebar) {
@@ -23,7 +25,7 @@ body {
 /* slimmer folder column: give it its own, smaller copy of the server list spacing so everything inside sizes to match */
 #app-mount .vc-betterFolders-sidebar {
     --custom-guild-list-padding: var(--bf-column-padding);
-    --custom-guild-list-width: calc(var(--guildbar-avatar-size) + var(--bf-column-padding) * 2 + var(--border-thickness) + var(--bf-scrollbar-space));
+    --custom-guild-list-width: var(--bf-column-width);
     width: auto !important;
 }
 /* keep the top padding the same as the main server list so the icons line up */
@@ -317,4 +319,8 @@ body {
 }
 .base_pog62O .guilds_pog62O {
     margin-top: calc(var(--back-forward-pill-height) + var(--gap));
+}
+/* while a Better Folders folder is open, its column joins the server list into one wider panel: widen the pill to match */
+.base_pog62O:has(.vc-betterFolders-sidebar) > .bar_3zSH5d .leading_3zSH5d {
+    width: calc(var(--custom-guild-list-width) + var(--bf-column-width));
 }
